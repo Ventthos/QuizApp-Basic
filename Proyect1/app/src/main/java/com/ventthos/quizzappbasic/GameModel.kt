@@ -1,0 +1,204 @@
+package com.ventthos.quizzappbasic
+
+import android.util.Log
+import androidx.lifecycle.ViewModel
+
+class GameModel: ViewModel() {
+
+    private val questions = listOf(
+        Question(
+            R.string.question1,
+            R.array.question1_options,
+            3,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question2,
+            R.array.question2_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question3,
+            R.array.question3_options,
+            3,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question4,
+            R.array.question4_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question5,
+            R.array.question5_options,
+            0,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question6,
+            R.array.question6_options,
+            2,
+            R.string.topic2
+        ),
+        Question(
+            R.string.question7,
+            R.array.question7_options,
+            1,
+            R.string.topic2
+        ),
+        Question(
+            R.string.question8,
+            R.array.question8_options,
+            2,
+            R.string.topic2
+        ),
+        Question(
+            R.string.question9,
+            R.array.question9_options,
+            2,
+            R.string.topic2
+        ),
+        Question(
+            R.string.question10,
+            R.array.question10_options,
+            3,
+            R.string.topic2
+        ),
+        Question(
+            R.string.question11,
+            R.array.question11_options,
+            2,
+            R.string.topic3
+        ),
+        Question(
+            R.string.question12,
+            R.array.question12_options,
+            2,
+            R.string.topic3
+        ),
+        Question(
+            R.string.question13,
+            R.array.question13_options,
+            0,
+            R.string.topic3
+        ),
+        Question(
+            R.string.question14,
+            R.array.question14_options,
+            2,
+            R.string.topic3
+        ),
+        Question(
+            R.string.question15,
+            R.array.question15_options,
+            1,
+            R.string.topic3
+        ),
+        Question(
+            R.string.question16,
+            R.array.question16_options,
+            1,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question17,
+            R.array.question17_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question18,
+            R.array.question18_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question19,
+            R.array.question19_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question20,
+            R.array.question20_options,
+            2,
+            R.string.topic1
+        ),
+        Question(
+            R.string.question21,
+            R.array.question21_options,
+            1,
+            R.string.topic5
+        ),
+        Question(
+            R.string.question22,
+            R.array.question22_options,
+            1,
+            R.string.topic5
+        ),
+        Question(
+            R.string.question23,
+            R.array.question23_options,
+            2,
+            R.string.topic5
+        ),
+        Question(
+            R.string.question24,
+            R.array.question24_options,
+            1,
+            R.string.topic5
+        ),
+        Question(
+            R.string.question25,
+            R.array.question25_options,
+            2,
+            R.string.topic5
+        )
+    )
+
+    private var selectedQuestions = listOf<QuestionForScreen>()
+    private var currentQuestionIndex = 0
+
+    fun selectQuestions(quantity: Int, numberOfAnswers: Int) {
+
+        var questionsQuantity = quantity
+        var answersQuantity = numberOfAnswers
+        val listOfSelectedQuestions: MutableList<QuestionForScreen> = mutableListOf()
+
+        if (quantity > questions.size)
+            questionsQuantity = questions.size
+
+        if (answersQuantity > 4)
+            answersQuantity = 4
+
+        val shuffledQuestions = questions.asSequence().shuffled().take(questionsQuantity).toList()
+
+        for (question in shuffledQuestions){
+            val indices = (0 until 4).toMutableList()
+            indices.removeAt(question.answerIndex)
+            val shuffledIndices = indices.shuffled().take(answersQuantity-1).toMutableList()
+            shuffledIndices.add(question.answerIndex)
+            listOfSelectedQuestions.add(QuestionForScreen(question, shuffledIndices.shuffled()))
+        }
+        selectedQuestions = listOfSelectedQuestions
+    }
+
+
+    val currentQuestion: QuestionForScreen
+        get() = selectedQuestions[currentQuestionIndex]
+
+    fun nextQuestion(){
+        currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size
+    }
+
+    fun prevQuestion(){
+        currentQuestionIndex = (currentQuestionIndex - 1 + selectedQuestions.size)% selectedQuestions.size
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
+    }
+}

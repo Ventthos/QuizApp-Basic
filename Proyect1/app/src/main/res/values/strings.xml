@@ -1,0 +1,209 @@
+<resources>
+    <string name="app_name">QuizzApp Basic</string>
+
+    <string name="question1">¿Cuál es el planeta más grande del sistema solar?</string>
+    <string-array name="question1_options">
+        <item>Marte</item>
+        <item>Venus</item>
+        <item>Júpiter </item>
+        <item>Saturno</item>
+    </string-array>
+
+    <string name="question2">¿Cuál de estos elementos es un metal?</string>
+    <string-array name="question2_options">
+        <item>Helio</item>
+        <item>Oxígeno</item>
+        <item>Hierro</item>
+        <item>Nitrógeno</item>
+    </string-array>
+
+    <string name="question3">¿Qué órgano del cuerpo humano es responsable de bombear la sangre?</string>
+    <string-array name="question3_options">
+        <item>Pulmones</item>
+        <item>Hígado</item>
+        <item>Riñones</item>
+        <item>Corazón</item>
+    </string-array>
+
+    <string name="question4">¿Cuántos lados tiene un hexágono?</string>
+    <string-array name="question4_options">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string name="question5">¿Cuál es la velocidad aproximada de la luz en el vacío?</string>
+    <string-array name="question5_options">
+        <item>300,000 km/s</item>
+        <item>150,000 km/s</item>
+        <item>1,000 km/s</item>
+        <item>3,000 km/s</item>
+    </string-array>
+
+    <string name="question6">¿Cuál es el país más grande del mundo en superficie?</string>
+    <string-array name="question6_options">
+        <item>China</item>
+        <item>Estados Unidos</item>
+        <item>Rusia</item>
+        <item>Brasil</item>
+    </string-array>
+
+    <string name="question7">¿En qué continente se encuentra Egipto?</string>
+    <string-array name="question7_options">
+        <item>América</item>
+        <item>África</item>
+        <item>Asia</item>
+        <item>Europa</item>
+    </string-array>
+
+    <string name="question8">¿Cuál es el océano más grande del mundo?</string>
+    <string-array name="question8_options">
+        <item>Atlántico</item>
+        <item>Índico</item>
+        <item>Pacífico</item>
+        <item>Ártico</item>
+    </string-array>
+
+    <string name="question9">¿Cuál es la capital de Australia?</string>
+    <string-array name="question9_options">
+        <item>Sídney</item>
+        <item>Melbourne</item>
+        <item>Canberra</item>
+        <item>Brisbane</item>
+    </string-array>
+
+    <string name="question10">¿Qué desierto es el más grande del mundo?</string>
+    <string-array name="question10_options">
+        <item>Desierto del Sahara</item>
+        <item>Desierto de Atacama</item>
+        <item>Desierto del Gobi</item>
+        <item>Antártida</item>
+    </string-array>
+
+    <string name="question11">¿En qué año ocurrió la Revolución Francesa?</string>
+    <string-array name="question11_options">
+        <item>1492</item>
+        <item>1776</item>
+        <item>1789</item>
+        <item>1810</item>
+    </string-array>
+
+    <string name="question12">¿Quién fue el primer presidente de los Estados Unidos?</string>
+    <string-array name="question12_options">
+        <item>Thomas Jefferson</item>
+        <item>Abraham Lincoln</item>
+        <item>George Washington</item>
+        <item>John Adams</item>
+    </string-array>
+
+    <string name="question13">¿En qué año llegó Cristóbal Colón a América?</string>
+    <string-array name="question13_options">
+        <item>1492</item>
+        <item>1519</item>
+        <item>1607</item>
+        <item>1776</item>
+    </string-array>
+
+    <string name="question14">¿Cuál fue la civilización que construyó Machu Picchu?</string>
+    <string-array name="question14_options">
+        <item>Aztecas</item>
+        <item>Mayas</item>
+        <item>Incas</item>
+        <item>Toltecas</item>
+    </string-array>
+
+    <string name="question15">¿Qué muro cayó en 1989 simbolizando el fin de la Guerra Fría?</string>
+    <string-array name="question15_options">
+        <item>Muro de China</item>
+        <item>Muro de Berlín</item>
+        <item>Muro de los Lamentos</item>
+        <item>Muro de Adriano</item>
+    </string-array>
+
+    <string name="question16">¿Cómo se dice "perro" en inglés?</string>
+    <string-array name="question16_options">
+        <item>Cat</item>
+        <item>Dog</item>
+        <item>Horse</item>
+        <item>Bird</item>
+    </string-array>
+
+    <string name="question17">¿Cuál es la forma correcta del verbo "ser" en primera persona del singular en presente?</string>
+    <string-array name="question17_options">
+        <item>You are</item>
+        <item>I is</item>
+        <item>I am</item>
+        <item>He be</item>
+    </string-array>
+
+    <string name="question18">¿Qué significa la palabra "apple"?</string>
+    <string-array name="question18_options">
+        <item>Plátano</item>
+        <item>Pera</item>
+        <item>Manzana</item>
+        <item>Uva</item>
+    </string-array>
+
+    <string name="question19">¿Cómo se dice "rojo" en inglés?</string>
+    <string-array name="question19_options">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string name="question20">¿Cuál es la traducción de "I like to read books"?</string>
+    <string-array name="question20_options">
+        <item>Me gusta leer libros</item>
+        <item>No me gusta leer</item>
+        <item>Me gusta comprar libros</item>
+        <item>Me gusta escribir libros</item>
+    </string-array>
+
+    <string name="question21">¿Quién escribió "Don Quijote de la Mancha"?</string>
+    <string-array name="question21_options">
+        <item>Gabriel García Márquez</item>
+        <item>Miguel de Cervantes</item>
+        <item>William Shakespeare</item>
+        <item>Julio Verne</item>
+    </string-array>
+
+    <string name="question22">¿Cuál es el animal terrestre más rápido?</string>
+    <string-array name="question22_options">
+        <item>León</item>
+        <item>Guepardo</item>
+        <item>Caballo</item>
+        <item>Canguro</item>
+    </string-array>
+
+    <string name="question23">¿Qué famoso pintor cortó parte de su propia oreja?</string>
+    <string-array name="question23_options">
+        <item>Pablo Picasso</item>
+        <item>Leonardo da Vinci</item>
+        <item>Vincent van Gogh</item>
+        <item>Salvador Dalí</item>
+    </string-array>
+
+    <string name="question24">¿Cuál es el metal precioso más utilizado en joyería?</string>
+    <string-array name="question24_options">
+        <item>Hierro</item>
+        <item>Oro</item>
+        <item>Bronce</item>
+        <item>Platino</item>
+    </string-array>
+
+    <string name="question25">¿Qué instrumento musical tiene teclas blancas y negras?</string>
+    <string-array name="question25_options">
+        <item>Guitarra</item>
+        <item>Violín</item>
+        <item>Piano</item>
+        <item>Flauta</item>
+    </string-array>
+
+    <string name="topic1">Ciencia</string>
+    <string name="topic2">Geografía</string>
+    <string name="topic3">Historia</string>
+    <string name="topic4">Inglés</string>
+    <string name="topic5">Cultura General</string>
+</resources>
