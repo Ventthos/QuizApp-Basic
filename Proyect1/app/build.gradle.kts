@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,6 +37,11 @@ android {
 }
 
 dependencies {
+    val lifecycleVersion = "2.8.7"
+    val fragment_version = "1.8.5"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation ("androidx.fragment:fragment-ktx:$fragment_version")
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
