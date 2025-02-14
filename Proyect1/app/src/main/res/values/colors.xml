@@ -18,4 +18,13 @@
     <color name="surface_color">#FFFFFF</color>
     <color name="on_primary">#FFFFFF</color>
     <color name="on_secondary">#000000</color>
+
+    <color name="greenCorrect">#43c05f</color>
+    <color name="redIncorrect">#f22733</color>
+    <color name="yellow">#f7dc43</color>
+    <color name="orange">#fe9500</color>
+    <color name="rosa">#f352af</color>
+    <color name="purple">#8d45b5</color>
+    <color name="blue">#1674ce</color>
+
 </resources>

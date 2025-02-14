@@ -99,7 +99,7 @@ class GameModel: ViewModel() {
         Question(
             R.string.question16,
             R.array.question16_options,
-            1,
+            3,
             Category.MOVIES
         ),
         Question(
@@ -111,7 +111,7 @@ class GameModel: ViewModel() {
         Question(
             R.string.question18,
             R.array.question18_options,
-            2,
+            0,
             Category.MOVIES
         ),
         Question(
@@ -123,7 +123,7 @@ class GameModel: ViewModel() {
         Question(
             R.string.question20,
             R.array.question20_options,
-            2,
+            1,
             Category.MOVIES
         ),
         Question(

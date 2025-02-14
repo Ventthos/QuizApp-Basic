@@ -121,44 +121,44 @@
         <item>Muro de Adriano</item>
     </string-array>
 
-    <string name="question16">¿Cómo se dice "perro" en inglés?</string>
+    <string name="question16">¿Cuál es la película con más premios Óscar ganados?</string>
     <string-array name="question16_options">
-        <item>Cat</item>
-        <item>Dog</item>
-        <item>Horse</item>
-        <item>Bird</item>
+        <item>Titanic</item>
+        <item>El Señor de los Anillos: El Retorno del Rey</item>
+        <item>Ben-Hur</item>
+        <item>Todas las anteriores</item>
     </string-array>
 
-    <string name="question17">¿Cuál es la forma correcta del verbo "ser" en primera persona del singular en presente?</string>
+    <string name="question17">¿Qué saga de películas sigue la historia de un joven mago llamado Harry?</string>
     <string-array name="question17_options">
-        <item>You are</item>
-        <item>I is</item>
-        <item>I am</item>
-        <item>He be</item>
+        <item>El Señor de los Anillos</item>
+        <item>Narnia</item>
+        <item>Harry Potter</item>
+        <item>Crepúsculo</item>
     </string-array>
 
-    <string name="question18">¿Qué significa la palabra "apple"?</string>
+    <string name="question18">¿Cuál es la película animada más taquillera de la historia?</string>
     <string-array name="question18_options">
-        <item>Plátano</item>
-        <item>Pera</item>
-        <item>Manzana</item>
-        <item>Uva</item>
+        <item>Frozen II</item>
+        <item>El Rey León (2019)</item>
+        <item>Los Increíbles 2</item>
+        <item>Minions</item>
     </string-array>
 
-    <string name="question19">¿Cómo se dice "rojo" en inglés?</string>
+    <string name="question19">¿Quién interpretó al Joker en *El Caballero de la Noche*?</string>
     <string-array name="question19_options">
-        <item>Blue</item>
-        <item>Green</item>
-        <item>Red</item>
-        <item>Yellow</item>
+        <item>Joaquin Phoenix</item>
+        <item>Jack Nicholson</item>
+        <item>Heath Ledger</item>
+        <item>Jared Leto</item>
     </string-array>
 
-    <string name="question20">¿Cuál es la traducción de "I like to read books"?</string>
+    <string name="question20">¿En qué película un tiburón blanco aterroriza a un pueblo costero?</string>
     <string-array name="question20_options">
-        <item>Me gusta leer libros</item>
-        <item>No me gusta leer</item>
-        <item>Me gusta comprar libros</item>
-        <item>Me gusta escribir libros</item>
+        <item>Jurassic Park</item>
+        <item>Jaws (Tiburón)</item>
+        <item>Deep Blue Sea</item>
+        <item>Megalodón</item>
     </string-array>
 
     <string name="question21">¿Quién escribió "Don Quijote de la Mancha"?</string>
