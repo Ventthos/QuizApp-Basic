@@ -10,151 +10,151 @@ class GameModel: ViewModel() {
             R.string.question1,
             R.array.question1_options,
             3,
-            R.string.topic1
+            Category.SCIENCE
         ),
         Question(
             R.string.question2,
             R.array.question2_options,
             2,
-            R.string.topic1
+            Category.SCIENCE
         ),
         Question(
             R.string.question3,
             R.array.question3_options,
             3,
-            R.string.topic1
+            Category.SCIENCE
         ),
         Question(
             R.string.question4,
             R.array.question4_options,
             2,
-            R.string.topic1
+            Category.SCIENCE
         ),
         Question(
             R.string.question5,
             R.array.question5_options,
             0,
-            R.string.topic1
+            Category.SCIENCE
         ),
         Question(
             R.string.question6,
             R.array.question6_options,
             2,
-            R.string.topic2
+            Category.GEOGRAPHY
         ),
         Question(
             R.string.question7,
             R.array.question7_options,
             1,
-            R.string.topic2
+            Category.GEOGRAPHY
         ),
         Question(
             R.string.question8,
             R.array.question8_options,
             2,
-            R.string.topic2
+            Category.GEOGRAPHY
         ),
         Question(
             R.string.question9,
             R.array.question9_options,
             2,
-            R.string.topic2
+            Category.GEOGRAPHY
         ),
         Question(
             R.string.question10,
             R.array.question10_options,
             3,
-            R.string.topic2
+            Category.GEOGRAPHY
         ),
         Question(
             R.string.question11,
             R.array.question11_options,
             2,
-            R.string.topic3
+            Category.HISTORY
         ),
         Question(
             R.string.question12,
             R.array.question12_options,
             2,
-            R.string.topic3
+            Category.HISTORY
         ),
         Question(
             R.string.question13,
             R.array.question13_options,
             0,
-            R.string.topic3
+            Category.HISTORY
         ),
         Question(
             R.string.question14,
             R.array.question14_options,
             2,
-            R.string.topic3
+            Category.HISTORY
         ),
         Question(
             R.string.question15,
             R.array.question15_options,
             1,
-            R.string.topic3
+            Category.HISTORY
         ),
         Question(
             R.string.question16,
             R.array.question16_options,
             1,
-            R.string.topic1
+            Category.MOVIES
         ),
         Question(
             R.string.question17,
             R.array.question17_options,
             2,
-            R.string.topic1
+            Category.MOVIES
         ),
         Question(
             R.string.question18,
             R.array.question18_options,
             2,
-            R.string.topic1
+            Category.MOVIES
         ),
         Question(
             R.string.question19,
             R.array.question19_options,
             2,
-            R.string.topic1
+            Category.MOVIES
         ),
         Question(
             R.string.question20,
             R.array.question20_options,
             2,
-            R.string.topic1
+            Category.MOVIES
         ),
         Question(
             R.string.question21,
             R.array.question21_options,
             1,
-            R.string.topic5
+            Category.CULTURE
         ),
         Question(
             R.string.question22,
             R.array.question22_options,
             1,
-            R.string.topic5
+            Category.CULTURE
         ),
         Question(
             R.string.question23,
             R.array.question23_options,
             2,
-            R.string.topic5
+            Category.CULTURE
         ),
         Question(
             R.string.question24,
             R.array.question24_options,
             1,
-            R.string.topic5
+            Category.CULTURE
         ),
         Question(
             R.string.question25,
             R.array.question25_options,
             2,
-            R.string.topic5
+            Category.CULTURE
         )
     )
 
@@ -162,11 +162,8 @@ class GameModel: ViewModel() {
     private var currentQuestionIndex = 0
 
     private var answersPerQuestion = 0
-    enum class categories{
 
-    }
-
-    fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: categories? = null ) {
+    fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
 
         if(selectedQuestions.size != 0)
             return
@@ -203,12 +200,6 @@ class GameModel: ViewModel() {
     val CurrentQuestionIndex: Int
         get() = currentQuestionIndex
 
-    var AnswersPerQuestion: Int
-        get() = answersPerQuestion
-        set(value) {
-            if(value<=0)
-                throw IllegalArgumentException("El número de respuestas por pregunta debe ser mayor que 0")
-            answersPerQuestion = value}
 
     fun nextQuestion(){
         currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size

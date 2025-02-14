@@ -1,8 +1,10 @@
 package com.ventthos.quizzappbasic
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -11,18 +13,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.children
 import com.google.android.material.snackbar.Snackbar
 
 class GameScreen : AppCompatActivity() {
-    private val  quizzAppModel: GameModel by viewModels()
+    private val quizzAppModel: GameModel by viewModels()
 
     private lateinit var questionTextView: TextView
     private lateinit var answersBox: LinearLayout
     private lateinit var nextButton: Button
     private lateinit var backButton: Button
+    private lateinit var categoryImage: ImageView
+    private lateinit var categoryText: TextView
+    private lateinit var questionCounterText: TextView
 
     private val numberOfQuestions = 4
-    private val answersPerQuestion = 4
+    private val answersPerQuestion = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +40,9 @@ class GameScreen : AppCompatActivity() {
         answersBox = findViewById(R.id.answersBox)
         nextButton = findViewById(R.id.nextButton)
         backButton = findViewById(R.id.backButton)
+        categoryImage = findViewById(R.id.categoryImage)
+        categoryText = findViewById(R.id.categoryText)
+        questionCounterText = findViewById(R.id.questionCounterText)
 
         quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
 
@@ -46,7 +55,7 @@ class GameScreen : AppCompatActivity() {
     }
 
     fun prepareField(){
-        for(i in 0 until numberOfQuestions){
+        for(i in 0 until answersPerQuestion){
             val optionButton = Button(this)
             answersBox.addView(optionButton)
         }
@@ -57,15 +66,20 @@ class GameScreen : AppCompatActivity() {
         val questionOptions = resources.getStringArray(currentQuestion.question.options)
         val currentQuestionOptions = currentQuestion.optionsSelected
         questionTextView.setText(currentQuestion.question.questionId)
-
+        categoryImage.setImageResource(currentQuestion.question.category.image)
+        categoryText.setText(currentQuestion.question.category.categoryText)
+        //Cambiar esto por un R string
+        questionCounterText.text = "Pregunta ${quizzAppModel.CurrentQuestionIndex+1} / ${numberOfQuestions}"
 
         for (i in 0 until answersBox.childCount) {
             val optionButton = answersBox.getChildAt(i)
             if(optionButton is Button){
                 optionButton.text = questionOptions[currentQuestionOptions[i]]
+                optionButton.tag = currentQuestionOptions[i]
                 optionButton.setOnClickListener { registerAnswer(currentQuestionOptions[i]) }
             }
         }
+        changeSylesAnswers()
     }
 
     fun changeNextQuestion(){
@@ -82,12 +96,30 @@ class GameScreen : AppCompatActivity() {
         if(quizzAppModel.currentQuestion.question.answered)
             return
 
+        quizzAppModel.currentQuestion.question.answered = true
         quizzAppModel.currentQuestion.question.answerGottenIndex = index
-
+        changeSylesAnswers()
     }
 
     fun changeSylesAnswers(){
+        for (i in 0 until answersBox.childCount) {
+            val optionButton = answersBox.getChildAt(i)
+            if(optionButton is Button) {
+                optionButton.setBackgroundColor(Color.parseColor("#eeeee4"))
+            }
+        }
+
         if(!quizzAppModel.currentQuestion.question.answered)
             return
+
+        val currentQuestion = quizzAppModel.currentQuestion.question
+        val selectedButton =answersBox.children.filter { it.tag == currentQuestion.answerGottenIndex}.elementAt(0)
+        Log.i("sisisi el coso este de selected", selectedButton.toString())
+        if(currentQuestion.answerGottenIndex == currentQuestion.answerIndex){
+            selectedButton.setBackgroundColor(Color.parseColor("#063970"))
+            return
+        }
+        selectedButton.setBackgroundColor(Color.parseColor("#e28743"))
+
     }
 }
