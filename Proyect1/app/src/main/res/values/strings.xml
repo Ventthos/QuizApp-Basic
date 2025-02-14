@@ -218,4 +218,8 @@
     <string name="logo_content_description">Logotipo de la aplicación QuizApp</string>
     <string name="app_subtitle">Pon a prueba tus conocimientos</string>
     <string name="decoration_description">Imagen decorativa de la interfaz</string>
+    <string name="footer_text">Preguntados</string>
+    <string name="user">Chan</string>
+    <string name="logo_desc">SI</string>
+    <string name="play_icon_desc">si</string>
 </resources>
