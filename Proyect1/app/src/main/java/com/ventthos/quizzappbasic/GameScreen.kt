@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
@@ -26,6 +27,7 @@ class GameScreen : AppCompatActivity() {
     private lateinit var categoryImage: ImageView
     private lateinit var categoryText: TextView
     private lateinit var questionCounterText: TextView
+    private lateinit var header: LinearLayout
 
     private val numberOfQuestions = 4
     private val answersPerQuestion = 2
@@ -43,6 +45,7 @@ class GameScreen : AppCompatActivity() {
         categoryImage = findViewById(R.id.categoryImage)
         categoryText = findViewById(R.id.categoryText)
         questionCounterText = findViewById(R.id.questionCounterText)
+        header = findViewById(R.id.header)
 
         quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
 
@@ -67,6 +70,7 @@ class GameScreen : AppCompatActivity() {
         val currentQuestionOptions = currentQuestion.optionsSelected
         questionTextView.setText(currentQuestion.question.questionId)
         categoryImage.setImageResource(currentQuestion.question.category.image)
+        header.setBackgroundColor(ContextCompat.getColor(this, currentQuestion.question.category.colorCode))
         categoryText.setText(currentQuestion.question.category.categoryText)
         //Cambiar esto por un R string
         questionCounterText.text = "Pregunta ${quizzAppModel.CurrentQuestionIndex+1} / ${numberOfQuestions}"
@@ -116,10 +120,10 @@ class GameScreen : AppCompatActivity() {
         val selectedButton =answersBox.children.filter { it.tag == currentQuestion.answerGottenIndex}.elementAt(0)
         Log.i("sisisi el coso este de selected", selectedButton.toString())
         if(currentQuestion.answerGottenIndex == currentQuestion.answerIndex){
-            selectedButton.setBackgroundColor(Color.parseColor("#063970"))
+            selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.greenCorrect))
             return
         }
-        selectedButton.setBackgroundColor(Color.parseColor("#e28743"))
+        selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.redIncorrect))
 
     }
 }
