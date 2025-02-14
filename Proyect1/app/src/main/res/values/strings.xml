@@ -209,4 +209,13 @@
 
     <string name="nextButton">Siguiente</string>
     <string name="backButton">Anterior</string>
+
+    <string name="app_logo">Logo de QuizApp</string>
+    <string name="play">JUGAR</string>
+    <string name="options">OPCIONES</string>
+    <string name="error_message">Se produjo un error. Por favor, inténtalo de nuevo.</string>
+    <string name="loading">Cargando, espera un momento...</string>
+    <string name="logo_content_description">Logotipo de la aplicación QuizApp</string>
+    <string name="app_subtitle">Pon a prueba tus conocimientos</string>
+    <string name="decoration_description">Imagen decorativa de la interfaz</string>
 </resources>
