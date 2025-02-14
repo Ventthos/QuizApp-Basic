@@ -206,4 +206,7 @@
     <string name="topic3">Historia</string>
     <string name="topic4">Inglés</string>
     <string name="topic5">Cultura General</string>
+
+    <string name="nextButton">Siguiente</string>
+    <string name="backButton">Anterior</string>
 </resources>

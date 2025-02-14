@@ -161,7 +161,15 @@ class GameModel: ViewModel() {
     private var selectedQuestions = listOf<QuestionForScreen>()
     private var currentQuestionIndex = 0
 
-    fun selectQuestions(quantity: Int, numberOfAnswers: Int) {
+    private var answersPerQuestion = 0
+    enum class categories{
+
+    }
+
+    fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: categories? = null ) {
+
+        if(selectedQuestions.size != 0)
+            return
 
         var questionsQuantity = quantity
         var answersQuantity = numberOfAnswers
@@ -172,6 +180,9 @@ class GameModel: ViewModel() {
 
         if (answersQuantity > 4)
             answersQuantity = 4
+
+        val filteredQuestions = questions
+
 
         val shuffledQuestions = questions.asSequence().shuffled().take(questionsQuantity).toList()
 
@@ -189,6 +200,16 @@ class GameModel: ViewModel() {
     val currentQuestion: QuestionForScreen
         get() = selectedQuestions[currentQuestionIndex]
 
+    val CurrentQuestionIndex: Int
+        get() = currentQuestionIndex
+
+    var AnswersPerQuestion: Int
+        get() = answersPerQuestion
+        set(value) {
+            if(value<=0)
+                throw IllegalArgumentException("El número de respuestas por pregunta debe ser mayor que 0")
+            answersPerQuestion = value}
+
     fun nextQuestion(){
         currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size
     }
@@ -197,8 +218,4 @@ class GameModel: ViewModel() {
         currentQuestionIndex = (currentQuestionIndex - 1 + selectedQuestions.size)% selectedQuestions.size
     }
 
-    override fun onCleared() {
-        super.onCleared()
-
-    }
 }
