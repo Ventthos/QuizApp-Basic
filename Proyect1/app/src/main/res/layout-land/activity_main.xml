@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/logoGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="75dp"
+            android:layout_height="63dp"
+            android:contentDescription="@string/logo_desc"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvChan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/user"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/ivHeader"
+        android:layout_width="311dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="0dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/tittleimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoGroup" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPlay"
+        android:layout_width="389dp"
+        android:layout_height="224dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:minWidth="300dp"
+        app:cardBackgroundColor="@color/lightblue"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/ivPlay"
+                android:layout_width="360dp"
+                android:layout_height="158dp"
+                android:contentDescription="@string/play_icon_desc"
+                android:scaleType="centerInside"
+                android:src="@drawable/play_icon" />
+
+            <TextView
+                android:id="@+id/tvPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/play"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/ivOpcionesImagen"
+        android:layout_width="291dp"
+        android:layout_height="154dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/options_image_desc"
+        android:scaleType="centerInside"
+        android:src="@drawable/preguntados"
+        app:layout_constraintBottom_toTopOf="@id/btnOpciones"
+        app:layout_constraintEnd_toEndOf="@id/btnOpciones"
+        app:layout_constraintStart_toStartOf="@id/btnOpciones" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOpciones"
+        android:layout_width="179dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        android:text="@string/options"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@color/orange"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toEndOf="@id/cardPlay"
+        app:layout_constraintTop_toBottomOf="@id/ivHeader"
+        app:layout_constraintVertical_bias="0.804" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
