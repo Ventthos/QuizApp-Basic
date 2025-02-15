@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -28,9 +29,12 @@ class GameScreen : AppCompatActivity() {
     private lateinit var categoryText: TextView
     private lateinit var questionCounterText: TextView
     private lateinit var header: LinearLayout
+    private lateinit var hintButton: ImageButton
+    private lateinit var hintsAvailable: TextView
 
     private val numberOfQuestions = 10
     private val answersPerQuestion = 4
+    private val numberOfHints = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +50,11 @@ class GameScreen : AppCompatActivity() {
         categoryText = findViewById(R.id.categoryText)
         questionCounterText = findViewById(R.id.questionCounterText)
         header = findViewById(R.id.header)
+        hintButton = findViewById(R.id.hintButton)
+        hintsAvailable = findViewById(R.id.hintsAvailable)
 
         quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
+        quizzAppModel.HintsCuantity = numberOfHints
 
         prepareField()
         changeQuestion()
@@ -55,9 +62,11 @@ class GameScreen : AppCompatActivity() {
         //Aca pongan sus bindings
         nextButton.setOnClickListener {changeNextQuestion()}
         backButton.setOnClickListener {changePreviousQuestion()}
+        hintButton.setOnClickListener { useHint() }
     }
 
     fun prepareField(){
+        hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
         for(i in 0 until answersPerQuestion) {
             val optionButton = Button(this)
             optionButton.setTextColor(Color.BLACK)
@@ -111,9 +120,14 @@ class GameScreen : AppCompatActivity() {
     fun changeSylesAnswers(){
         for (i in 0 until answersBox.childCount) {
             val optionButton = answersBox.getChildAt(i)
-            if(optionButton is Button) {
+            if(optionButton !is Button)
+                return
+
+            if(optionButton.tag !in quizzAppModel.currentQuestion.optionsWithHint){
                 optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
+                continue
             }
+            optionButton.setBackgroundResource(R.drawable.rounded_layer_container_gray)
         }
 
         if(!quizzAppModel.currentQuestion.question.answered)
@@ -127,6 +141,28 @@ class GameScreen : AppCompatActivity() {
             return
         }
         selectedButton.setBackgroundResource(R.drawable.rounded_layer_container_red)
+
+    }
+
+    fun useHint(){
+        val currentQuestion = quizzAppModel.currentQuestion
+        if (currentQuestion.question.answered || quizzAppModel.HintsCuantity == 0){
+            return
+        }
+
+        val possibleHints = currentQuestion.optionsSelected.filter { it !in currentQuestion.optionsWithHint && it != currentQuestion.question.answerIndex}
+
+        val hint = possibleHints.random()
+        currentQuestion.optionsWithHint.add(hint)
+
+        if(possibleHints.size == 1){
+            registerAnswer(currentQuestion.question.answerIndex)
+        }
+
+        quizzAppModel.HintsCuantity -= 1
+
+        hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
+        changeSylesAnswers()
 
     }
 }

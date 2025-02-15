@@ -145,29 +145,47 @@
                 android:id="@+id/backButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/backButton"
                 android:backgroundTint="@color/gray"
                 android:textColor="@color/white"
+                android:layout_marginEnd="6dp"
                />
 
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:src="@drawable/hint_icon"
-                android:scaleType="fitCenter"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
 
-                android:background="@drawable/button_menu"
-                />
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/hint_icon"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/button_menu"
+                    android:id="@+id/hintButton"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1"
+                    android:fontFamily="@font/mikado_bold"
+                    android:textSize="25sp"
+                    android:id="@+id/hintsAvailable"/>
+
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/nextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/nextButton"
                 android:backgroundTint="@color/gray"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"/>
         </LinearLayout>
 
 

@@ -160,7 +160,7 @@ class GameModel: ViewModel() {
 
     private var selectedQuestions = listOf<QuestionForScreen>()
     private var currentQuestionIndex = 0
-
+    private var hintsCuantity = 0
 
     fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
 
@@ -199,6 +199,9 @@ class GameModel: ViewModel() {
     val CurrentQuestionIndex: Int
         get() = currentQuestionIndex
 
+    var HintsCuantity: Int
+        get() = hintsCuantity
+        set(value) = if (value >= 0) hintsCuantity = value else throw IllegalArgumentException("Numero invalido de pistas")
 
     fun nextQuestion(){
         currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size
