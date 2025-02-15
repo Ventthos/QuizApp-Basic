@@ -29,8 +29,8 @@ class GameScreen : AppCompatActivity() {
     private lateinit var questionCounterText: TextView
     private lateinit var header: LinearLayout
 
-    private val numberOfQuestions = 4
-    private val answersPerQuestion = 2
+    private val numberOfQuestions = 10
+    private val answersPerQuestion = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +58,11 @@ class GameScreen : AppCompatActivity() {
     }
 
     fun prepareField(){
-        for(i in 0 until answersPerQuestion){
+        for(i in 0 until answersPerQuestion) {
             val optionButton = Button(this)
+            optionButton.setTextColor(Color.BLACK)
+            optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
+
             answersBox.addView(optionButton)
         }
     }
@@ -109,7 +112,7 @@ class GameScreen : AppCompatActivity() {
         for (i in 0 until answersBox.childCount) {
             val optionButton = answersBox.getChildAt(i)
             if(optionButton is Button) {
-                optionButton.setBackgroundColor(Color.parseColor("#eeeee4"))
+                optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
             }
         }
 
@@ -118,12 +121,12 @@ class GameScreen : AppCompatActivity() {
 
         val currentQuestion = quizzAppModel.currentQuestion.question
         val selectedButton =answersBox.children.filter { it.tag == currentQuestion.answerGottenIndex}.elementAt(0)
-        Log.i("sisisi el coso este de selected", selectedButton.toString())
+
         if(currentQuestion.answerGottenIndex == currentQuestion.answerIndex){
-            selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.greenCorrect))
+            selectedButton.setBackgroundResource(R.drawable.rounded_layer_container_green)
             return
         }
-        selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.redIncorrect))
+        selectedButton.setBackgroundResource(R.drawable.rounded_layer_container_red)
 
     }
 }

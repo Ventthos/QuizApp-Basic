@@ -161,7 +161,6 @@ class GameModel: ViewModel() {
     private var selectedQuestions = listOf<QuestionForScreen>()
     private var currentQuestionIndex = 0
 
-    private var answersPerQuestion = 0
 
     fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
 

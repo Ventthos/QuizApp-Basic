@@ -31,6 +31,6 @@
 
     <color name="gray">#B0B0B0</color>
     <color name="slider_default">#53B7EE</color>
-
+    <color name="light_gray">#e5e4e9</color>
 
 </resources>
