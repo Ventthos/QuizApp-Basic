@@ -28,4 +28,9 @@
     <color name="blue">#1674ce</color>
     <color name="lightblue">#53B7EE</color>
     <color name="neutral_green">#30b7a5</color>
+
+    <color name="gray">#B0B0B0</color>
+    <color name="slider_default">#53B7EE</color>
+
+
 </resources>
