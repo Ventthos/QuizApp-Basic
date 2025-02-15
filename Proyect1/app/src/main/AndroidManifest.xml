@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizzAppBasic"
         tools:targetApi="31">
+        <activity android:name=".SpinRouletteView"/>
         <activity
             android:name=".GameScreen"
             android:exported="false" />

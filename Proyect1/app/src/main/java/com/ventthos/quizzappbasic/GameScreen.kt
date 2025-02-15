@@ -31,7 +31,6 @@ class GameScreen : AppCompatActivity() {
 
     private val numberOfQuestions = 4
     private val answersPerQuestion = 2
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,7 +47,6 @@ class GameScreen : AppCompatActivity() {
         header = findViewById(R.id.header)
 
         quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
-
         prepareField()
         changeQuestion()
 

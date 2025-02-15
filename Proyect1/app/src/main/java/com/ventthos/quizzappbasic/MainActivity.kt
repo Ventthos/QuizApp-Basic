@@ -20,10 +20,13 @@ class MainActivity : AppCompatActivity() {
         btnJugar = findViewById(R.id.cardPlay)
         btnOpciones = findViewById(R.id.btnOpciones)
 
+        //btnJugar.setOnClickListener {
+        //    val intent = Intent(this, GameScreen::class.java)
+        //   startActivity(intent)
+        //}
         btnJugar.setOnClickListener {
-            val intent = Intent(this, GameScreen::class.java)
+            val intent = Intent(this, SpinRouletteView::class.java)
             startActivity(intent)
         }
-
     }
 }

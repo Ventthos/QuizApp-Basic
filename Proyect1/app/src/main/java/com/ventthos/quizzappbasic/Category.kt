@@ -14,4 +14,5 @@ enum class Category(
     HISTORY(R.string.topic3, R.color.yellow, R.drawable.history),
     MOVIES(R.string.topic4, R.color.purple, R.drawable.movies),
     CULTURE(R.string.topic5, R.color.error_color, R.drawable.culture)
+
 }
