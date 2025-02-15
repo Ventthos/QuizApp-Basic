@@ -223,4 +223,9 @@
     <string name="logo_desc">SI</string>
     <string name="play_icon_desc">si</string>
     <string name="options_image_desc">SI</string>
+    <string name="difficulty">Selecciona la dificultad:</string>
+    <string name="hints">Número de pistas:</string>
+    <string name="back">Regresar</string>
+    <string name="work_in_progress">Trabajo en progreso</string>
+    <string name="hints_description">SI</string>
 </resources>

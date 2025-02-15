@@ -25,5 +25,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnOpciones.setOnClickListener {
+            val intent = Intent(this, OptionsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
