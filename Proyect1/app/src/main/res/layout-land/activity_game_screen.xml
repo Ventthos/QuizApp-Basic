@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameScreen">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="center"
+            tools:background="@color/greenCorrect">
+
+            <ImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/science_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/categoryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/topic1"
+                android:textColor="@color/white"
+                android:fontFamily="@font/mikado_bold"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@color/neutral_green"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/questionCounterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Pregunta"
+                android:textColor="@color/white"
+                android:fontFamily="@font/mikado_bold"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded_layer_container"
+                    android:backgroundTint="@color/white"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/questionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mikado_bold"
+                        android:padding="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        tools:text="@string/question8" />
+
+                    <ImageView
+                        android:id="@+id/hintInformer"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="end|bottom"
+                        android:src="@drawable/hint_icon" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/answersBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:showDividers="middle"
+                    android:divider="@drawable/empty_tall_divider"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp"
+                android:background="@color/light_gray">
+
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/backButton"
+                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/hintButton"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/hint_icon"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/button_menu"
+                        android:layout_marginBottom="6dp"
+                        android:contentDescription="@string/hint" />
+
+                    <TextView
+                        android:id="@+id/hintsAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="1"
+                        android:fontFamily="@font/mikado_bold"
+                        android:textSize="25sp"
+                        android:layout_marginBottom="6dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nextButton"
+                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

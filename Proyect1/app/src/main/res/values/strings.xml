@@ -228,4 +228,6 @@
     <string name="back">Regresar</string>
     <string name="work_in_progress">Trabajo en progreso</string>
     <string name="hints_description">SI</string>
+    <string name="hint">Hint</string>
+
 </resources>
