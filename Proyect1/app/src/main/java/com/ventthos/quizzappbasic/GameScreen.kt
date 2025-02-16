@@ -3,6 +3,7 @@ package com.ventthos.quizzappbasic
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -31,10 +32,13 @@ class GameScreen : AppCompatActivity() {
     private lateinit var header: LinearLayout
     private lateinit var hintButton: ImageButton
     private lateinit var hintsAvailable: TextView
+    private lateinit var hintInformer: ImageView
 
     private val numberOfQuestions = 10
-    private val answersPerQuestion = 4
-    private val numberOfHints = 3
+    private val answersPerQuestion = 3
+
+    private val maximumOfHints = 3
+    private val numberOfHints = maximumOfHints
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +56,13 @@ class GameScreen : AppCompatActivity() {
         header = findViewById(R.id.header)
         hintButton = findViewById(R.id.hintButton)
         hintsAvailable = findViewById(R.id.hintsAvailable)
+        hintInformer = findViewById(R.id.hintInformer)
+
+        if(quizzAppModel.HintsCuantity == -1){
+            quizzAppModel.HintsCuantity = numberOfHints
+        }
 
         quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
-        quizzAppModel.HintsCuantity = numberOfHints
 
         prepareField()
         changeQuestion()
@@ -84,6 +92,9 @@ class GameScreen : AppCompatActivity() {
         categoryImage.setImageResource(currentQuestion.question.category.image)
         header.setBackgroundColor(ContextCompat.getColor(this, currentQuestion.question.category.colorCode))
         categoryText.setText(currentQuestion.question.category.categoryText)
+
+        showCheater()
+
         //Cambiar esto por un R string
         questionCounterText.text = "Pregunta ${quizzAppModel.CurrentQuestionIndex+1} / ${numberOfQuestions}"
 
@@ -98,6 +109,14 @@ class GameScreen : AppCompatActivity() {
         changeSylesAnswers()
     }
 
+    fun showCheater(){
+        if(quizzAppModel.currentQuestion.optionsWithHint.isEmpty()){
+            hintInformer.visibility = View.INVISIBLE
+            return
+        }
+        hintInformer.visibility = View.VISIBLE
+    }
+
     fun changeNextQuestion(){
         quizzAppModel.nextQuestion()
         changeQuestion()
@@ -108,12 +127,18 @@ class GameScreen : AppCompatActivity() {
         changeQuestion()
     }
 
-    fun registerAnswer(index: Int){
+    fun registerAnswer(index: Int, hint: Boolean = false){
         if(quizzAppModel.currentQuestion.question.answered)
             return
 
         quizzAppModel.currentQuestion.question.answered = true
         quizzAppModel.currentQuestion.question.answerGottenIndex = index
+
+        if(!hint){
+            quizzAppModel.addToStreak(quizzAppModel.currentQuestion.question.answerIndex == index)
+            hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
+        }
+
         changeSylesAnswers()
     }
 
@@ -123,11 +148,14 @@ class GameScreen : AppCompatActivity() {
             if(optionButton !is Button)
                 return
 
+            optionButton.isEnabled = true
+
             if(optionButton.tag !in quizzAppModel.currentQuestion.optionsWithHint){
                 optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
                 continue
             }
             optionButton.setBackgroundResource(R.drawable.rounded_layer_container_gray)
+            optionButton.isEnabled = false
         }
 
         if(!quizzAppModel.currentQuestion.question.answered)
@@ -156,13 +184,14 @@ class GameScreen : AppCompatActivity() {
         currentQuestion.optionsWithHint.add(hint)
 
         if(possibleHints.size == 1){
-            registerAnswer(currentQuestion.question.answerIndex)
+            registerAnswer(currentQuestion.question.answerIndex, true)
         }
 
         quizzAppModel.HintsCuantity -= 1
-
         hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
-        changeSylesAnswers()
 
+        changeSylesAnswers()
+        showCheater()
     }
+
 }

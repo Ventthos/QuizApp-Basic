@@ -87,7 +87,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
 
-            <LinearLayout
+            <FrameLayout
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,7 +109,15 @@
                     android:textAlignment="center"
                     />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/hintInformer"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="end|bottom"
+                    android:src="@drawable/hint_icon"
+                    />
+
+            </FrameLayout>
 
 
             <LinearLayout

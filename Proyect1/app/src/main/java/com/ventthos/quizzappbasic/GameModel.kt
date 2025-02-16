@@ -160,11 +160,12 @@ class GameModel: ViewModel() {
 
     private var selectedQuestions = listOf<QuestionForScreen>()
     private var currentQuestionIndex = 0
-    private var hintsCuantity = 0
+    private var hintsCuantity = -1
+    private var streak = 0
 
     fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
 
-        if(selectedQuestions.size != 0)
+        if(selectedQuestions.isNotEmpty())
             return
 
         var questionsQuantity = quantity
@@ -192,7 +193,6 @@ class GameModel: ViewModel() {
         selectedQuestions = listOfSelectedQuestions
     }
 
-
     val currentQuestion: QuestionForScreen
         get() = selectedQuestions[currentQuestionIndex]
 
@@ -201,7 +201,10 @@ class GameModel: ViewModel() {
 
     var HintsCuantity: Int
         get() = hintsCuantity
-        set(value) = if (value >= 0) hintsCuantity = value else throw IllegalArgumentException("Numero invalido de pistas")
+        set(value){
+             if (value >= 0) hintsCuantity = value
+            else throw IllegalArgumentException("Numero invalido de pistas")
+        }
 
     fun nextQuestion(){
         currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size
@@ -210,5 +213,20 @@ class GameModel: ViewModel() {
     fun prevQuestion(){
         currentQuestionIndex = (currentQuestionIndex - 1 + selectedQuestions.size)% selectedQuestions.size
     }
+
+    fun addToStreak(isCorrect: Boolean){
+        if(!isCorrect){
+            streak = 0
+            return
+        }
+
+        streak += 1
+        if(streak >=2){
+            hintsCuantity += 1
+            streak = 0
+        }
+    }
+
+
 
 }
