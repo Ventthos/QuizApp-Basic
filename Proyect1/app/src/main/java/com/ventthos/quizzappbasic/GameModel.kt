@@ -178,10 +178,12 @@ class GameModel: ViewModel() {
         if (answersQuantity > 4)
             answersQuantity = 4
 
-        val filteredQuestions = questions
+        var filteredQuestions = questions
+        if(category != null){
+            filteredQuestions = filteredQuestions.filter { it.category == category }
+        }
 
-
-        val shuffledQuestions = questions.asSequence().shuffled().take(questionsQuantity).toList()
+        val shuffledQuestions = filteredQuestions.asSequence().shuffled().take(questionsQuantity).toList()
 
         for (question in shuffledQuestions){
             val indices = (0 until 4).toMutableList()
