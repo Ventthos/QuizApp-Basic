@@ -45,7 +45,6 @@ class GameScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_game_screen)
 
-        // Aqui vayan declarando sus elementos
         questionTextView = findViewById(R.id.questionText)
         answersBox = findViewById(R.id.answersBox)
         nextButton = findViewById(R.id.nextButton)
