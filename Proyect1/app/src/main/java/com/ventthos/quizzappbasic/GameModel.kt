@@ -158,8 +158,8 @@ class GameModel: ViewModel() {
         )
     )
 
-    private var initialated = false
-    private var selectedQuestions = listOf<QuestionForScreen>()
+    private var initialized = false
+    private var selectedQuestions = mutableListOf<QuestionForScreen>()
     private var numberOfAnswers = 4
     private var currentQuestionIndex = 0
     private var hintsCuantity = -1
@@ -191,7 +191,7 @@ class GameModel: ViewModel() {
             shuffledIndices.add(question.answerIndex)
             listOfSelectedQuestions.add(QuestionForScreen(question, shuffledIndices.shuffled()))
         }
-        selectedQuestions = listOfSelectedQuestions
+        selectedQuestions.addAll(listOfSelectedQuestions)
     }
 
     val currentQuestion: QuestionForScreen
@@ -207,10 +207,10 @@ class GameModel: ViewModel() {
             else throw IllegalArgumentException("Numero invalido de pistas")
         }
 
-    var Initialazed: Boolean
-        get() = initialated
+    var Initialized: Boolean
+        get() = initialized
         set(value){
-            initialated = value
+            initialized = value
         }
 
     var NumberOfAnswers: Int

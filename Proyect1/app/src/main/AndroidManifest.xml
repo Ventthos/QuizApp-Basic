@@ -16,7 +16,9 @@
         <activity
             android:name=".GameScreen"
             android:exported="false" />
-
+        <activity
+            android:name=".SpinRouletteView"
+            android:exported="false"/>
         <activity
             android:name=".OptionsActivity"
             android:exported="false" />

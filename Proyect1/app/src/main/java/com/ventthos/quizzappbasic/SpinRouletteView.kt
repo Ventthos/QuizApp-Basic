@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 
+val QUESTION_CATEGORY_EXTRA = "com.ventthos.quizzappbasic.category"
+
 class SpinRouletteView : AppCompatActivity() {
     private lateinit var luckyWheelView: Roulette
     private lateinit var spinButton: Button
@@ -27,13 +29,10 @@ class SpinRouletteView : AppCompatActivity() {
             spinButton.isEnabled = false
 
             luckyWheelView.spinWheel { winner ->
-                // Mostrar el mensaje cuando termine la animación
-                val intent = Intent(this, GameScreen::class.java)
-                intent.putExtra("selectedCategory", winner)  // Pasar el nombre del enum
-                startActivity(intent)
 
                 // Habilitar el botón de nuevo después de la animación
                 spinButton.isEnabled = true
+                returnWinner(winner)
             }
         }
     }
@@ -42,5 +41,14 @@ class SpinRouletteView : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         luckyWheelView.saveState(outState)
+    }
+
+    fun returnWinner(winner: Category){
+
+        val resultIntent = Intent().apply {
+            putExtra(QUESTION_CATEGORY_EXTRA, winner)
+        }
+        setResult(RESULT_OK, resultIntent)
+        finish()
     }
 }

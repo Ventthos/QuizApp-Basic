@@ -15,6 +15,7 @@ class Roulette(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val wheelPaint = Paint()
     private val textPaint = Paint()
     private val arrowPaint = Paint()
+    private val numVueltas = 5
     val science = Category.SCIENCE
     // Asumiendo que cada categoría tiene una imagen correspondiente en el directorio 'res/drawable'
     private val sections = listOf(
@@ -96,7 +97,7 @@ class Roulette(context: Context, attrs: AttributeSet) : View(context, attrs) {
     // Método para girar la ruleta y calcular la sección ganadora
     fun spinWheel(onSpinEnd: (Category) -> Unit) {
         val randomAngle = (0..350).random().toFloat()  // Ángulo aleatorio entre 0° y 350°
-        val finalAngle = angle + 360f * 5 + randomAngle  // Agrega múltiples vueltas
+        val finalAngle = angle + 360f * numVueltas + randomAngle  // Agrega múltiples vueltas
 
         animator?.cancel()
         val animator = ValueAnimator.ofFloat(angle, finalAngle).apply {

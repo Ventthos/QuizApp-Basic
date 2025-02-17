@@ -1,5 +1,6 @@
 package com.ventthos.quizzappbasic
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
 import com.google.android.material.snackbar.Snackbar
+val CATEGORY_TAG: Category = Category.SCIENCE
 
 class GameScreen : AppCompatActivity() {
     private val quizzAppModel: GameModel by viewModels()
@@ -63,32 +65,39 @@ class GameScreen : AppCompatActivity() {
         hintsAvailable = findViewById(R.id.hintsAvailable)
         hintInformer = findViewById(R.id.hintInformer)
 
-        if(!quizzAppModel.Initialazed){
+        if(!quizzAppModel.Initialized){
             val savedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY)
             maximumOfHints = intent.getIntExtra(EXTRA_KEY_HINTS_QUANTITY, 3)
             numberOfHints = maximumOfHints
 
             answersPerQuestion = difficulties[savedDifficulty] ?: 2
 
-            quizzAppModel.Initialazed = true
-
             quizzAppModel.HintsCuantity = numberOfHints
             quizzAppModel.NumberOfAnswers = answersPerQuestion
-            quizzAppModel.selectQuestions(numberOfQuestions)
+            prepareField()
         }
-
-        prepareField()
-        changeQuestion()
 
         //Aca pongan sus bindings
         nextButton.setOnClickListener {changeNextQuestion()}
         backButton.setOnClickListener {changePreviousQuestion()}
         hintButton.setOnClickListener { useHint() }
+
+
+        //Lanzar ruleta
+        if(!quizzAppModel.Initialized){
+            quizzAppModel.Initialized = true
+            lauchRulette()
+        }
+        else{
+            prepareField()
+            changeQuestion()
+        }
+
     }
 
     fun prepareField(){
         hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
-        for(i in 0 until answersPerQuestion) {
+        for(i in 0 until quizzAppModel.NumberOfAnswers) {
             val optionButton = Button(this)
             optionButton.setTextColor(Color.BLACK)
             optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
@@ -205,6 +214,22 @@ class GameScreen : AppCompatActivity() {
 
         changeSylesAnswers()
         showCheater()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val currentCategory =  data?.getSerializableExtra(QUESTION_CATEGORY_EXTRA) as? Category ?: Category.SCIENCE
+            quizzAppModel.selectQuestions(1, currentCategory)
+
+            changeQuestion()
+        }
+    }
+
+    fun lauchRulette(){
+        val intent = Intent(this, SpinRouletteView::class.java)
+        startActivityForResult(intent, 1)
     }
 
 }

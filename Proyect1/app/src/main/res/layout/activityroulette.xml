@@ -8,11 +8,11 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".SpinRouletteView">
+
     <com.ventthos.quizzappbasic.Roulette
         android:id="@+id/RouletteToSpin"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        />
+        android:layout_width="400dp"
+        android:layout_height="358dp" />
     <Button
         android:id="@+id/btnGirar"
         android:layout_width="wrap_content"
