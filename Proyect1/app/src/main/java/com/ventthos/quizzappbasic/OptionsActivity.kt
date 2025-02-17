@@ -1,6 +1,7 @@
 package com.ventthos.quizzappbasic
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -8,22 +9,19 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import com.google.android.material.slider.Slider
 import com.google.android.material.button.MaterialButton
 import androidx.appcompat.app.AppCompatActivity
+
+const val EXTRA_KEY_DIFFICULTY ="com.ventthos.quizzappbasic.difficulty"
+const val EXTRA_KEY_HINTS_QUANTITY ="com.ventthos.quizzappbasic.hints_quantity"
 
 class OptionsActivity : AppCompatActivity() {
 
     private lateinit var spinnerDifficulty: Spinner
     private lateinit var sliderHints: Slider
     private lateinit var btnBack: MaterialButton
-    private lateinit var sharedPrefs: SharedPreferences
-
-    companion object {
-        const val PREFS_NAME = "QuizAppPreferences"
-        const val KEY_DIFFICULTY = "difficulty"
-        const val KEY_HINTS = "hints"
-    }
 
     // maximo de pistas pa cada uno
     private fun allowedMaxForDifficulty(difficulty: String): Int {
@@ -37,6 +35,7 @@ class OptionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_options)
 
         spinnerDifficulty = findViewById(R.id.spinnerDifficulty)
@@ -48,7 +47,6 @@ class OptionsActivity : AppCompatActivity() {
         sliderHints.valueTo = 3f
         sliderHints.stepSize = 1f
 
-        sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         val difficulties = resources.getStringArray(R.array.difficulty_levels)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, difficulties)
@@ -56,13 +54,14 @@ class OptionsActivity : AppCompatActivity() {
         spinnerDifficulty.adapter = adapter
 
         // Recuperamos la dificultad guardada (por defecto "NORMAL")
-        val savedDifficulty = sharedPrefs.getString(KEY_DIFFICULTY, "NORMAL") ?: "NORMAL"
+        val savedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY)
+
         // Seleccionamos la dificultad en el spinner
         val index = difficulties.indexOfFirst { it.equals(savedDifficulty, ignoreCase = true) }
         if (index >= 0) spinnerDifficulty.setSelection(index)
 
         //las pistas guardadas o usamos el máximo permitido según la dificultad
-        val savedHints = sharedPrefs.getInt(KEY_HINTS, allowedMaxForDifficulty(savedDifficulty))
+        val savedHints = intent.getIntExtra(EXTRA_KEY_HINTS_QUANTITY, 3)
         sliderHints.value = savedHints.toFloat()
 
         spinnerDifficulty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -112,11 +111,12 @@ class OptionsActivity : AppCompatActivity() {
         val selectedDifficulty = spinnerDifficulty.selectedItem.toString()
         val selectedHints = sliderHints.value.toInt()
 
-        with(sharedPrefs.edit()) {
-            putString(KEY_DIFFICULTY, selectedDifficulty)
-            putInt(KEY_HINTS, selectedHints)
-            apply()
+        val resultIntent = Intent().apply {
+            putExtra(DIFFICULTYTAG, selectedDifficulty)
+            putExtra(HINTSTAG, selectedHints)
         }
+
+        setResult(RESULT_OK, resultIntent)
     }
 }
 

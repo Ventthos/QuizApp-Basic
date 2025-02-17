@@ -35,10 +35,16 @@ class GameScreen : AppCompatActivity() {
     private lateinit var hintInformer: ImageView
 
     private val numberOfQuestions = 10
-    private val answersPerQuestion = 3
+    private var answersPerQuestion = 3
 
-    private val maximumOfHints = 3
-    private val numberOfHints = maximumOfHints
+    private var maximumOfHints = 3
+    private var numberOfHints = maximumOfHints
+
+    val difficulties = mapOf(
+        "Fácil" to 2,
+        "Normal" to 3,
+        "Difícil" to 4
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +63,19 @@ class GameScreen : AppCompatActivity() {
         hintsAvailable = findViewById(R.id.hintsAvailable)
         hintInformer = findViewById(R.id.hintInformer)
 
-        if(quizzAppModel.HintsCuantity == -1){
-            quizzAppModel.HintsCuantity = numberOfHints
-        }
+        if(!quizzAppModel.Initialazed){
+            val savedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY)
+            maximumOfHints = intent.getIntExtra(EXTRA_KEY_HINTS_QUANTITY, 3)
+            numberOfHints = maximumOfHints
 
-        quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
+            answersPerQuestion = difficulties[savedDifficulty] ?: 2
+
+            quizzAppModel.Initialazed = true
+
+            quizzAppModel.HintsCuantity = numberOfHints
+            quizzAppModel.NumberOfAnswers = answersPerQuestion
+            quizzAppModel.selectQuestions(numberOfQuestions)
+        }
 
         prepareField()
         changeQuestion()

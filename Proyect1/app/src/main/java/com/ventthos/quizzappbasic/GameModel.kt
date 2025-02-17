@@ -158,15 +158,14 @@ class GameModel: ViewModel() {
         )
     )
 
+    private var initialated = false
     private var selectedQuestions = listOf<QuestionForScreen>()
+    private var numberOfAnswers = 4
     private var currentQuestionIndex = 0
     private var hintsCuantity = -1
     private var streak = 0
 
-    fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
-
-        if(selectedQuestions.isNotEmpty())
-            return
+    fun selectQuestions(quantity: Int, category: Category? = null ) {
 
         var questionsQuantity = quantity
         var answersQuantity = numberOfAnswers
@@ -205,6 +204,19 @@ class GameModel: ViewModel() {
         get() = hintsCuantity
         set(value){
              if (value >= 0) hintsCuantity = value
+            else throw IllegalArgumentException("Numero invalido de pistas")
+        }
+
+    var Initialazed: Boolean
+        get() = initialated
+        set(value){
+            initialated = value
+        }
+
+    var NumberOfAnswers: Int
+        get() = numberOfAnswers
+        set(value){
+            if (value >= 0) numberOfAnswers = value
             else throw IllegalArgumentException("Numero invalido de pistas")
         }
 
