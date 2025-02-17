@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context=".OptionsActivity">
+
+    <ImageView
+        android:id="@+id/ivWorkInProgress"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/work_in_progress"
+        android:contentDescription="@string/work_in_progress"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/tvDifficulty"
+        android:layout_width="218dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/difficulty"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivWorkInProgress"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerDifficulty"
+        android:layout_width="218dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="52dp"
+        android:entries="@array/difficulty_levels"
+        android:minHeight="55dp"
+        app:layout_constraintStart_toEndOf="@id/ivWorkInProgress"
+        app:layout_constraintTop_toBottomOf="@id/tvDifficulty" />
+
+    <TextView
+        android:id="@+id/tvHints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/hints"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivWorkInProgress"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDifficulty" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderHints"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:contentDescription="@string/hints_description"
+        android:stepSize="1"
+        android:valueFrom="0"
+        android:valueTo="3"
+        app:layout_constraintStart_toEndOf="@id/ivWorkInProgress"
+        app:layout_constraintTop_toBottomOf="@id/tvHints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="@string/back"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:backgroundTint="@color/orange"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

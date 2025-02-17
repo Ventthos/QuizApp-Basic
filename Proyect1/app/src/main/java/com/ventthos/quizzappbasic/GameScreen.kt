@@ -3,7 +3,9 @@ package com.ventthos.quizzappbasic
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -28,15 +30,27 @@ class GameScreen : AppCompatActivity() {
     private lateinit var categoryText: TextView
     private lateinit var questionCounterText: TextView
     private lateinit var header: LinearLayout
+    private lateinit var hintButton: ImageButton
+    private lateinit var hintsAvailable: TextView
+    private lateinit var hintInformer: ImageView
 
-    private val numberOfQuestions = 4
-    private val answersPerQuestion = 2
+    private val numberOfQuestions = 10
+    private var answersPerQuestion = 3
+
+    private var maximumOfHints = 3
+    private var numberOfHints = maximumOfHints
+
+    val difficulties = mapOf(
+        "Fácil" to 2,
+        "Normal" to 3,
+        "Difícil" to 4
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_game_screen)
 
-        // Aqui vayan declarando sus elementos
         questionTextView = findViewById(R.id.questionText)
         answersBox = findViewById(R.id.answersBox)
         nextButton = findViewById(R.id.nextButton)
@@ -45,19 +59,40 @@ class GameScreen : AppCompatActivity() {
         categoryText = findViewById(R.id.categoryText)
         questionCounterText = findViewById(R.id.questionCounterText)
         header = findViewById(R.id.header)
+        hintButton = findViewById(R.id.hintButton)
+        hintsAvailable = findViewById(R.id.hintsAvailable)
+        hintInformer = findViewById(R.id.hintInformer)
 
-        quizzAppModel.selectQuestions(numberOfQuestions, answersPerQuestion)
+        if(!quizzAppModel.Initialazed){
+            val savedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY)
+            maximumOfHints = intent.getIntExtra(EXTRA_KEY_HINTS_QUANTITY, 3)
+            numberOfHints = maximumOfHints
+
+            answersPerQuestion = difficulties[savedDifficulty] ?: 2
+
+            quizzAppModel.Initialazed = true
+
+            quizzAppModel.HintsCuantity = numberOfHints
+            quizzAppModel.NumberOfAnswers = answersPerQuestion
+            quizzAppModel.selectQuestions(numberOfQuestions)
+        }
+
         prepareField()
         changeQuestion()
 
         //Aca pongan sus bindings
         nextButton.setOnClickListener {changeNextQuestion()}
         backButton.setOnClickListener {changePreviousQuestion()}
+        hintButton.setOnClickListener { useHint() }
     }
 
     fun prepareField(){
-        for(i in 0 until answersPerQuestion){
+        hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
+        for(i in 0 until answersPerQuestion) {
             val optionButton = Button(this)
+            optionButton.setTextColor(Color.BLACK)
+            optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
+
             answersBox.addView(optionButton)
         }
     }
@@ -70,6 +105,9 @@ class GameScreen : AppCompatActivity() {
         categoryImage.setImageResource(currentQuestion.question.category.image)
         header.setBackgroundColor(ContextCompat.getColor(this, currentQuestion.question.category.colorCode))
         categoryText.setText(currentQuestion.question.category.categoryText)
+
+        showCheater()
+
         //Cambiar esto por un R string
         questionCounterText.text = "Pregunta ${quizzAppModel.CurrentQuestionIndex+1} / ${numberOfQuestions}"
 
@@ -84,6 +122,14 @@ class GameScreen : AppCompatActivity() {
         changeSylesAnswers()
     }
 
+    fun showCheater(){
+        if(quizzAppModel.currentQuestion.optionsWithHint.isEmpty()){
+            hintInformer.visibility = View.INVISIBLE
+            return
+        }
+        hintInformer.visibility = View.VISIBLE
+    }
+
     fun changeNextQuestion(){
         quizzAppModel.nextQuestion()
         changeQuestion()
@@ -94,21 +140,35 @@ class GameScreen : AppCompatActivity() {
         changeQuestion()
     }
 
-    fun registerAnswer(index: Int){
+    fun registerAnswer(index: Int, hint: Boolean = false){
         if(quizzAppModel.currentQuestion.question.answered)
             return
 
         quizzAppModel.currentQuestion.question.answered = true
         quizzAppModel.currentQuestion.question.answerGottenIndex = index
+
+        if(!hint){
+            quizzAppModel.addToStreak(quizzAppModel.currentQuestion.question.answerIndex == index)
+            hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
+        }
+
         changeSylesAnswers()
     }
 
     fun changeSylesAnswers(){
         for (i in 0 until answersBox.childCount) {
             val optionButton = answersBox.getChildAt(i)
-            if(optionButton is Button) {
-                optionButton.setBackgroundColor(Color.parseColor("#eeeee4"))
+            if(optionButton !is Button)
+                return
+
+            optionButton.isEnabled = true
+
+            if(optionButton.tag !in quizzAppModel.currentQuestion.optionsWithHint){
+                optionButton.setBackgroundResource(R.drawable.rounded_layer_container)
+                continue
             }
+            optionButton.setBackgroundResource(R.drawable.rounded_layer_container_gray)
+            optionButton.isEnabled = false
         }
 
         if(!quizzAppModel.currentQuestion.question.answered)
@@ -116,12 +176,35 @@ class GameScreen : AppCompatActivity() {
 
         val currentQuestion = quizzAppModel.currentQuestion.question
         val selectedButton =answersBox.children.filter { it.tag == currentQuestion.answerGottenIndex}.elementAt(0)
-        Log.i("sisisi el coso este de selected", selectedButton.toString())
+
         if(currentQuestion.answerGottenIndex == currentQuestion.answerIndex){
-            selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.greenCorrect))
+            selectedButton.setBackgroundResource(R.drawable.rounded_layer_container_green)
             return
         }
-        selectedButton.setBackgroundColor(ContextCompat.getColor(this,R.color.redIncorrect))
+        selectedButton.setBackgroundResource(R.drawable.rounded_layer_container_red)
 
     }
+
+    fun useHint(){
+        val currentQuestion = quizzAppModel.currentQuestion
+        if (currentQuestion.question.answered || quizzAppModel.HintsCuantity == 0){
+            return
+        }
+
+        val possibleHints = currentQuestion.optionsSelected.filter { it !in currentQuestion.optionsWithHint && it != currentQuestion.question.answerIndex}
+
+        val hint = possibleHints.random()
+        currentQuestion.optionsWithHint.add(hint)
+
+        if(possibleHints.size == 1){
+            registerAnswer(currentQuestion.question.answerIndex, true)
+        }
+
+        quizzAppModel.HintsCuantity -= 1
+        hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
+
+        changeSylesAnswers()
+        showCheater()
+    }
+
 }

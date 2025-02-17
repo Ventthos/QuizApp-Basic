@@ -158,15 +158,14 @@ class GameModel: ViewModel() {
         )
     )
 
+    private var initialated = false
     private var selectedQuestions = listOf<QuestionForScreen>()
+    private var numberOfAnswers = 4
     private var currentQuestionIndex = 0
+    private var hintsCuantity = -1
+    private var streak = 0
 
-    private var answersPerQuestion = 0
-
-    fun selectQuestions(quantity: Int, numberOfAnswers: Int, category: Category? = null ) {
-
-        if(selectedQuestions.size != 0)
-            return
+    fun selectQuestions(quantity: Int, category: Category? = null ) {
 
         var questionsQuantity = quantity
         var answersQuantity = numberOfAnswers
@@ -178,10 +177,12 @@ class GameModel: ViewModel() {
         if (answersQuantity > 4)
             answersQuantity = 4
 
-        val filteredQuestions = questions
+        var filteredQuestions = questions
+        if(category != null){
+            filteredQuestions = filteredQuestions.filter { it.category == category }
+        }
 
-
-        val shuffledQuestions = questions.asSequence().shuffled().take(questionsQuantity).toList()
+        val shuffledQuestions = filteredQuestions.asSequence().shuffled().take(questionsQuantity).toList()
 
         for (question in shuffledQuestions){
             val indices = (0 until 4).toMutableList()
@@ -193,13 +194,31 @@ class GameModel: ViewModel() {
         selectedQuestions = listOfSelectedQuestions
     }
 
-
     val currentQuestion: QuestionForScreen
         get() = selectedQuestions[currentQuestionIndex]
 
     val CurrentQuestionIndex: Int
         get() = currentQuestionIndex
 
+    var HintsCuantity: Int
+        get() = hintsCuantity
+        set(value){
+             if (value >= 0) hintsCuantity = value
+            else throw IllegalArgumentException("Numero invalido de pistas")
+        }
+
+    var Initialazed: Boolean
+        get() = initialated
+        set(value){
+            initialated = value
+        }
+
+    var NumberOfAnswers: Int
+        get() = numberOfAnswers
+        set(value){
+            if (value >= 0) numberOfAnswers = value
+            else throw IllegalArgumentException("Numero invalido de pistas")
+        }
 
     fun nextQuestion(){
         currentQuestionIndex = (currentQuestionIndex+1)% selectedQuestions.size
@@ -208,5 +227,20 @@ class GameModel: ViewModel() {
     fun prevQuestion(){
         currentQuestionIndex = (currentQuestionIndex - 1 + selectedQuestions.size)% selectedQuestions.size
     }
+
+    fun addToStreak(isCorrect: Boolean){
+        if(!isCorrect){
+            streak = 0
+            return
+        }
+
+        streak += 1
+        if(streak >=2){
+            hintsCuantity += 1
+            streak = 0
+        }
+    }
+
+
 
 }
