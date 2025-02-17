@@ -241,6 +241,10 @@ class GameModel: ViewModel() {
         }
     }
 
+    val lastQuestion
+        get() = selectedQuestions[selectedQuestions.size-1]
 
+    val currentQuantityOfQuestions
+        get() = selectedQuestions.size
 
 }

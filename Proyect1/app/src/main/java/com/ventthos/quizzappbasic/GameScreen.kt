@@ -74,8 +74,8 @@ class GameScreen : AppCompatActivity() {
 
             quizzAppModel.HintsCuantity = numberOfHints
             quizzAppModel.NumberOfAnswers = answersPerQuestion
-            prepareField()
         }
+        prepareField()
 
         //Aca pongan sus bindings
         nextButton.setOnClickListener {changeNextQuestion()}
@@ -89,7 +89,6 @@ class GameScreen : AppCompatActivity() {
             lauchRulette()
         }
         else{
-            prepareField()
             changeQuestion()
         }
 
@@ -140,6 +139,11 @@ class GameScreen : AppCompatActivity() {
     }
 
     fun changeNextQuestion(){
+        if(quizzAppModel.lastQuestion.question.answered &&
+            quizzAppModel.CurrentQuestionIndex == quizzAppModel.currentQuantityOfQuestions -1){
+            lauchRulette()
+            return
+        }
         quizzAppModel.nextQuestion()
         changeQuestion()
     }
@@ -222,6 +226,8 @@ class GameScreen : AppCompatActivity() {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             val currentCategory =  data?.getSerializableExtra(QUESTION_CATEGORY_EXTRA) as? Category ?: Category.SCIENCE
             quizzAppModel.selectQuestions(1, currentCategory)
+
+            quizzAppModel.nextQuestion()
 
             changeQuestion()
         }
