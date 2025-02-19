@@ -233,5 +233,9 @@
     <string name="hints_description">SI</string>
     <string name="hint">Hint</string>
 
+    <string name="score_text">Tu puntuación: 0</string>"
+    <string name="restart_button">Reiniciar Quiz</string>
+    <string name="resultado">Resultado</string>
+
 
 </resources>

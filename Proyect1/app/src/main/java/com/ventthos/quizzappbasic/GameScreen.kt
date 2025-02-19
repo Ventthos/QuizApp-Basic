@@ -141,15 +141,35 @@ class GameScreen : AppCompatActivity() {
         hintInformer.visibility = View.VISIBLE
     }
 
-    fun changeNextQuestion(){
+    fun changeNextQuestion() {
+
+        // Verifica si hemos llegado a la última pregunta (pregunta 10 en este caso)
+        if (quizzAppModel.CurrentQuestionIndex == 9) { // 9 porque es la pregunta 10, y los índices comienzan en 0
+            // Si es la última pregunta, pasar a la pantalla de resultados
+            goToResultScreen()
+            return
+        }
+
+        // Si no es la última pregunta, continúa a la siguiente
         if(quizzAppModel.lastQuestion.question.answered &&
             quizzAppModel.CurrentQuestionIndex == quizzAppModel.currentQuantityOfQuestions -1
             && quizzAppModel.currentQuantityOfQuestions != 10){
+                
             lauchRulette()
             return
         }
+
         quizzAppModel.nextQuestion()
         changeQuestion()
+    }
+
+    fun goToResultScreen() {
+        // Envía la puntuación y la dificultad a la pantalla de resultados
+        val intent = Intent(this, ResultScreen::class.java)
+        intent.putExtra("SCORE", quizzAppModel.score) // Pasa la puntuación
+        val selectedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY) ?: "Normal"
+        intent.putExtra("DIFFICULTY", selectedDifficulty) // Pasa la dificultad
+        startActivity(intent)
     }
 
     fun changePreviousQuestion(){
@@ -164,10 +184,16 @@ class GameScreen : AppCompatActivity() {
         quizzAppModel.currentQuestion.question.answered = true
         quizzAppModel.currentQuestion.question.answerGottenIndex = index
 
+        val isCorrect = quizzAppModel.currentQuestion.question.answerIndex == index
+        val hintsUsed = quizzAppModel.currentQuestion.optionsWithHint.size
+        val selectedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY) ?: "Normal"
+
         if(!hint){
-            quizzAppModel.addToStreak(quizzAppModel.currentQuestion.question.answerIndex == index)
+            quizzAppModel.addToStreak(isCorrect)
             hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
         }
+
+        quizzAppModel.updateScore(isCorrect, hintsUsed, selectedDifficulty)
 
         changeSylesAnswers()
     }
