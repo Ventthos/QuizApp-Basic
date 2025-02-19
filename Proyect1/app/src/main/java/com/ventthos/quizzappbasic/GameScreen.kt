@@ -140,7 +140,8 @@ class GameScreen : AppCompatActivity() {
 
     fun changeNextQuestion(){
         if(quizzAppModel.lastQuestion.question.answered &&
-            quizzAppModel.CurrentQuestionIndex == quizzAppModel.currentQuantityOfQuestions -1){
+            quizzAppModel.CurrentQuestionIndex == quizzAppModel.currentQuantityOfQuestions -1
+            && quizzAppModel.currentQuantityOfQuestions != 10){
             lauchRulette()
             return
         }
@@ -222,6 +223,7 @@ class GameScreen : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
             val currentCategory =  data?.getSerializableExtra(QUESTION_CATEGORY_EXTRA) as? Category ?: Category.SCIENCE

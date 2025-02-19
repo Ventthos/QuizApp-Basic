@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class GameModel: ViewModel() {
 
-    private val questions = listOf(
+    private val questions = mutableListOf(
         Question(
             R.string.question1,
             R.array.question1_options,
@@ -167,27 +167,23 @@ class GameModel: ViewModel() {
 
     fun selectQuestions(quantity: Int, category: Category? = null ) {
 
-        var questionsQuantity = quantity
-        var answersQuantity = numberOfAnswers
         val listOfSelectedQuestions: MutableList<QuestionForScreen> = mutableListOf()
-
-        if (quantity > questions.size)
-            questionsQuantity = questions.size
-
-        if (answersQuantity > 4)
-            answersQuantity = 4
 
         var filteredQuestions = questions
         if(category != null){
-            filteredQuestions = filteredQuestions.filter { it.category == category }
+            filteredQuestions = filteredQuestions.filter { it.category == category }.toMutableList()
         }
 
-        val shuffledQuestions = filteredQuestions.asSequence().shuffled().take(questionsQuantity).toList()
+        //val shuffledQuestions = filteredQuestions.asSequence().shuffled().take(questionsQuantity).toMutableList()
 
-        for (question in shuffledQuestions){
+        for (i in 0 until quantity){
+            val question = filteredQuestions.random()
+            filteredQuestions.remove(question)
+            questions.remove(question)
+
             val indices = (0 until 4).toMutableList()
             indices.removeAt(question.answerIndex)
-            val shuffledIndices = indices.shuffled().take(answersQuantity-1).toMutableList()
+            val shuffledIndices = indices.shuffled().take(numberOfAnswers-1).toMutableList()
             shuffledIndices.add(question.answerIndex)
             listOfSelectedQuestions.add(QuestionForScreen(question, shuffledIndices.shuffled()))
         }
