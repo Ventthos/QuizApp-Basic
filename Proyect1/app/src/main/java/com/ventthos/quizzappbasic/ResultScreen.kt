@@ -17,7 +17,7 @@ class ResultScreen : AppCompatActivity() {
         val resultImageView = findViewById<ImageView>(R.id.resultImageView)
         val resultMessageTextView =
             findViewById<TextView>(R.id.resultMessageTextView)  // Nuevo TextView para el mensaje
-        val restartButton = findViewById<Button>(R.id.restartButton)
+
 
         val score = intent.getIntExtra("SCORE", 0)
         val difficulty = intent.getStringExtra("DIFFICULTY") ?: "Normal"
@@ -83,11 +83,6 @@ class ResultScreen : AppCompatActivity() {
             .load(gifResource)
             .into(resultImageView)
 
-        restartButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()  // Cierra esta Activity y vuelve al juego
-        }
     }
 }
 

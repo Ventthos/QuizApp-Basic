@@ -70,10 +70,11 @@ class GameScreen : AppCompatActivity() {
             maximumOfHints = intent.getIntExtra(EXTRA_KEY_HINTS_QUANTITY, 3)
             numberOfHints = maximumOfHints
 
-            answersPerQuestion = difficulties[savedDifficulty] ?: 2
+            answersPerQuestion = difficulties[savedDifficulty] ?: 3
 
             quizzAppModel.HintsCuantity = numberOfHints
             quizzAppModel.NumberOfAnswers = answersPerQuestion
+            quizzAppModel.Difficulty = savedDifficulty ?: "Normal"
         }
         prepareField()
 
@@ -144,7 +145,7 @@ class GameScreen : AppCompatActivity() {
     fun changeNextQuestion() {
 
         // Verifica si hemos llegado a la última pregunta (pregunta 10 en este caso)
-        if (quizzAppModel.CurrentQuestionIndex == 9) { // 9 porque es la pregunta 10, y los índices comienzan en 0
+        if (quizzAppModel.CurrentQuestionIndex == 9 && quizzAppModel.currentQuestion.question.answered) { // 9 porque es la pregunta 10, y los índices comienzan en 0
             // Si es la última pregunta, pasar a la pantalla de resultados
             goToResultScreen()
             return
@@ -167,8 +168,7 @@ class GameScreen : AppCompatActivity() {
         // Envía la puntuación y la dificultad a la pantalla de resultados
         val intent = Intent(this, ResultScreen::class.java)
         intent.putExtra("SCORE", quizzAppModel.score) // Pasa la puntuación
-        val selectedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY) ?: "Normal"
-        intent.putExtra("DIFFICULTY", selectedDifficulty) // Pasa la dificultad
+        intent.putExtra("DIFFICULTY", quizzAppModel.Difficulty) // Pasa la dificultad
         startActivity(intent)
     }
 
@@ -186,7 +186,7 @@ class GameScreen : AppCompatActivity() {
 
         val isCorrect = quizzAppModel.currentQuestion.question.answerIndex == index
         val hintsUsed = quizzAppModel.currentQuestion.optionsWithHint.size
-        val selectedDifficulty = intent.getStringExtra(EXTRA_KEY_DIFFICULTY) ?: "Normal"
+        val selectedDifficulty = quizzAppModel.Difficulty
 
         if(!hint){
             quizzAppModel.addToStreak(isCorrect)
@@ -241,6 +241,7 @@ class GameScreen : AppCompatActivity() {
 
         if(possibleHints.size == 1){
             registerAnswer(currentQuestion.question.answerIndex, true)
+            quizzAppModel.addToStreak(false)
         }
 
         quizzAppModel.HintsCuantity -= 1

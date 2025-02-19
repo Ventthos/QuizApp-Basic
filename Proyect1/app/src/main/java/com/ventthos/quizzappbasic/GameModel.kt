@@ -166,6 +166,7 @@ class GameModel: ViewModel() {
     private var hintsCuantity = -1
     private var streak = 0
     var score = 0
+    private var difficulty = ""
 
     fun selectQuestions(quantity: Int, category: Category? = null ) {
 
@@ -216,6 +217,12 @@ class GameModel: ViewModel() {
         set(value){
             if (value >= 0) numberOfAnswers = value
             else throw IllegalArgumentException("Numero invalido de pistas")
+        }
+
+    var Difficulty: String
+        get() = difficulty
+        set(value){
+            difficulty = value
         }
 
     fun nextQuestion(){
