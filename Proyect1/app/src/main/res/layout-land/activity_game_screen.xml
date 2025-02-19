@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="14dp"
             android:gravity="center"
             tools:background="@color/greenCorrect">
 
@@ -71,14 +71,16 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="20dp"
+            >
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_marginEnd="10dp">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -108,67 +110,85 @@
                 </FrameLayout>
 
                 <LinearLayout
-                    android:id="@+id/answersBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:showDividers="middle"
-                    android:divider="@drawable/empty_tall_divider"
-                    android:padding="10dp" />
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:background="@color/light_gray">
+
+                        <Button
+                            android:id="@+id/backButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/backButton"
+                            android:backgroundTint="@color/gray"
+                            android:textColor="@color/white"
+                            android:layout_marginBottom="6dp"
+                            android:layout_weight="1"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <ImageButton
+                                android:id="@+id/hintButton"
+                                android:layout_width="60dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/hint_icon"
+                                android:scaleType="fitCenter"
+                                android:background="@drawable/button_menu"
+                                android:layout_marginBottom="6dp"
+                                android:contentDescription="@string/hint" />
+
+                            <TextView
+                                android:id="@+id/hintsAvailable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="1"
+                                android:fontFamily="@font/mikado_bold"
+                                android:textSize="25sp"
+                                android:layout_marginBottom="6dp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/nextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nextButton"
+                            android:backgroundTint="@color/gray"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:id="@+id/answersBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:background="@color/light_gray">
+                android:showDividers="middle"
+                android:divider="@drawable/empty_tall_divider"
+                android:columnCount="2"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                />
 
-                <Button
-                    android:id="@+id/backButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/backButton"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white"
-                    android:layout_marginBottom="6dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/hintButton"
-                        android:layout_width="60dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/hint_icon"
-                        android:scaleType="fitCenter"
-                        android:background="@drawable/button_menu"
-                        android:layout_marginBottom="6dp"
-                        android:contentDescription="@string/hint" />
-
-                    <TextView
-                        android:id="@+id/hintsAvailable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="1"
-                        android:fontFamily="@font/mikado_bold"
-                        android:textSize="25sp"
-                        android:layout_marginBottom="6dp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/nextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nextButton"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white" />
-            </LinearLayout>
 
         </LinearLayout>
 

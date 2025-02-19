@@ -106,6 +106,9 @@ class GameScreen : AppCompatActivity() {
     }
 
     fun changeQuestion(){
+        if(quizzAppModel.currentQuantityOfQuestions == 0)
+            return
+
         val currentQuestion = quizzAppModel.currentQuestion
         val questionOptions = resources.getStringArray(currentQuestion.question.options)
         val currentQuestionOptions = currentQuestion.optionsSelected
