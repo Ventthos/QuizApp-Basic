@@ -2,6 +2,7 @@ package com.ventthos.quizzappbasic
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.google.android.material.color.utilities.Score
 
 class GameModel: ViewModel() {
 
@@ -164,6 +165,7 @@ class GameModel: ViewModel() {
     private var currentQuestionIndex = 0
     private var hintsCuantity = -1
     private var streak = 0
+    var score = 0
 
     fun selectQuestions(quantity: Int, category: Category? = null ) {
 
@@ -246,5 +248,25 @@ class GameModel: ViewModel() {
 
     val currentQuantityOfQuestions
         get() = selectedQuestions.size
+
+    fun updateScore(isCorrect: Boolean, hintsUsed: Int, difficulty: String) {
+        if (!isCorrect) return
+
+        // Definimos el multiplicador de dificultad
+        val difficultyMultiplier = when (difficulty) {
+            "Fácil" -> 1
+            "Normal" -> 2
+            "Difícil" -> 3
+            else -> 1
+        }
+
+        // Calculamos la puntuación base en función de la dificultad
+        val baseScore = 100 * difficultyMultiplier
+        val penalty = hintsUsed * 20  // Restamos 20 puntos por cada hint usado
+
+        val finalScore = (baseScore - penalty).coerceAtLeast(0) // Evitamos puntajes negativos
+        score += finalScore
+    }
+
 
 }
