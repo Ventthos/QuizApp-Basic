@@ -77,7 +77,7 @@
         android:layout_height="60dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="68dp"
-        android:text="@string/back"
+        android:text="@string/save_settings"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:backgroundTint="@color/orange"

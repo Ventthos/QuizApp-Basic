@@ -1,21 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".SpinRouletteView">
 
-    <com.ventthos.quizzappbasic.Roulette
-        android:id="@+id/RouletteToSpin"
-        android:layout_width="400dp"
-        android:layout_height="358dp" />
-    <Button
-        android:id="@+id/btnGirar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/girar_ruleta"/>
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/day_background2"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@color/neutral_green"
+            android:paddingTop="40dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            >
+
+            <TextView
+                android:id="@+id/questionCounterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/roulette_text"
+                android:textColor="@color/white"
+                android:fontFamily="@font/mikado_bold"
+                android:textSize="30sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <com.ventthos.quizzappbasic.Roulette
+                android:id="@+id/RouletteToSpin"
+                android:layout_width="400dp"
+                android:layout_height="358dp" />
+            <Button
+                android:id="@+id/btnGirar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/girar_ruleta"
+                android:backgroundTint="@color/orange"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

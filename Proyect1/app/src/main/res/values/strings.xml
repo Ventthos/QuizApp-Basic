@@ -236,6 +236,7 @@
     <string name="score_text">Tu puntuación: 0</string>"
     <string name="restart_button">Reiniciar Quiz</string>
     <string name="resultado">Resultado</string>
-
+    <string name="save_settings">Guardar cambios</string>
+    <string name="roulette_text">Eligiendo nueva pregunta...</string>
 
 </resources>
