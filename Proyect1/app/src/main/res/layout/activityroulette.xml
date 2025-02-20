@@ -38,7 +38,8 @@
                 android:text="@string/roulette_text"
                 android:textColor="@color/white"
                 android:fontFamily="@font/mikado_bold"
-                android:textSize="30sp"/>
+                android:textSize="30sp"
+                android:textAlignment="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,13 +55,15 @@
             <com.ventthos.quizzappbasic.Roulette
                 android:id="@+id/RouletteToSpin"
                 android:layout_width="400dp"
-                android:layout_height="358dp" />
+                android:layout_height="312dp" />
+
             <Button
                 android:id="@+id/btnGirar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/girar_ruleta"
-                android:backgroundTint="@color/orange"/>
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"/>
             <Space
                 android:layout_width="0dp"
                 android:layout_height="0dp"

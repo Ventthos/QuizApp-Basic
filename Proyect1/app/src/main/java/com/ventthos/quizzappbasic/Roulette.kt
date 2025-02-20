@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
+import androidx.core.content.ContextCompat
 import  com.ventthos.quizzappbasic.Category
 class Roulette(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -29,7 +30,7 @@ class Roulette(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var angle = 0f  // Ángulo actual de la ruleta
     private var animator: ValueAnimator? = null
     private val colors = listOf(  // Colores fijos para cada sección
-        Color.GREEN, Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.RED
+        Color.parseColor("#43c05f"), Color.BLUE, Color.parseColor("#f7dc43"), Color.MAGENTA, Color.RED
     )
 
     init {
@@ -144,11 +145,11 @@ class Roulette(context: Context, attrs: AttributeSet) : View(context, attrs) {
     // Método para obtener la imagen correspondiente a cada categoría
     private fun getCategoryImage(category: Category): Bitmap {
         return when (category) {
-            Category.SCIENCE -> BitmapFactory.decodeResource(resources, R.drawable.science)
-            Category.GEOGRAPHY -> BitmapFactory.decodeResource(resources, R.drawable.geography)
-            Category.HISTORY -> BitmapFactory.decodeResource(resources, R.drawable.history)
-            Category.MOVIES -> BitmapFactory.decodeResource(resources, R.drawable.movies)
-            Category.CULTURE -> BitmapFactory.decodeResource(resources, R.drawable.culture)
+            Category.SCIENCE -> BitmapFactory.decodeResource(resources, Category.SCIENCE.image)
+            Category.GEOGRAPHY -> BitmapFactory.decodeResource(resources, Category.GEOGRAPHY.image)
+            Category.HISTORY -> BitmapFactory.decodeResource(resources, Category.HISTORY.image)
+            Category.MOVIES -> BitmapFactory.decodeResource(resources, Category.MOVIES.image)
+            Category.CULTURE -> BitmapFactory.decodeResource(resources, Category.CULTURE.image)
             // Agregar más casos según las categorías
         }
     }

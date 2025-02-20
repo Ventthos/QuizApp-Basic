@@ -51,4 +51,9 @@ class SpinRouletteView : AppCompatActivity() {
         setResult(RESULT_OK, resultIntent)
         finish()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        returnWinner(Category.SCIENCE)
+    }
 }
