@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 
 class ResultScreen : AppCompatActivity() {
+
+    private var score: Int = 0
+    private var difficulty: String = "Normal"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_screen)
@@ -18,9 +22,13 @@ class ResultScreen : AppCompatActivity() {
         val resultMessageTextView =
             findViewById<TextView>(R.id.resultMessageTextView)  // Nuevo TextView para el mensaje
 
-
-        val score = intent.getIntExtra("SCORE", 0)
-        val difficulty = intent.getStringExtra("DIFFICULTY") ?: "Normal"
+        if (savedInstanceState != null) {
+            score = savedInstanceState.getInt("SCORE")
+            difficulty = savedInstanceState.getString("DIFFICULTY") ?: "Normal"
+        }else{
+            score = intent.getIntExtra("SCORE", 0)
+            difficulty = intent.getStringExtra("DIFFICULTY") ?: "Normal"
+        }
 
         scoreTextView.text = "Tu puntuación: $score"
 
@@ -28,20 +36,24 @@ class ResultScreen : AppCompatActivity() {
         // HAY QUE CAMBIAR LAS CONDICIONES POR RANGOS COMO EN LAS CONDICIONES PARA gifResource
         val resultMessage = when {
             difficulty == "Fácil" -> {
-                if (score >= 800) "¡Buen comienzo, sigue así!"
-                else "¡Sigue practicando!"
+                if (score == 1000) "¡Ahora intenta algo más dificil!"
+                else if (score in 600..999) "¿Eso es todo lo que sabes?"
+                else if (score in 300..599) "¡Intenta de nuevo!"
+                else "¡Ni una buena!"
             }
 
             difficulty == "Normal" -> {
-                if (score >= 800) "¡Excelente trabajo!"
-                else if (score >= 500) "¡Buen trabajo!"
-                else "¡Sigue practicando!"
+                if (score == 2000) "¡Todavía no es suficiente!"
+                else if (score in 1200..1999) "¡Aprende más!"
+                else if (score in 600 .. 1199) "¿Este es el límite de tus capacidades?"
+                else "¡Eres un novato!"
             }
 
             difficulty == "Difícil" -> {
-                if (score >= 800) "¡Increíble trabajo, dominaste todo!"
-                else if (score >= 500) "¡Buen trabajo, pero la dificultad fue alta!"
-                else "¡No te rindas, puedes mejorar!"
+                if (score == 3000) "¡Finalmente un resultado aceptable!"
+                else if (score in 1800..2999) "¡Todavía no aprendiste nada!"
+                else if (score in 900 .. 1799) "¡Al menos intentaste!"
+                else "¡Eres un fracaso!"
             }
 
             else -> "¡Intenta de nuevo, puedes mejorar!"
@@ -84,6 +96,13 @@ class ResultScreen : AppCompatActivity() {
             .into(resultImageView)
 
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("SCORE", score)
+        outState.putString("DIFFICULTY", difficulty)
+    }
+
 }
 
 
