@@ -177,7 +177,7 @@ class GameScreen : AppCompatActivity() {
         changeQuestion()
     }
 
-    fun registerAnswer(index: Int, hint: Boolean = false){
+    fun registerAnswer(index: Int){
         if(quizzAppModel.currentQuestion.question.answered)
             return
 
@@ -188,10 +188,14 @@ class GameScreen : AppCompatActivity() {
         val hintsUsed = quizzAppModel.currentQuestion.optionsWithHint.size
         val selectedDifficulty = quizzAppModel.Difficulty
 
-        if(!hint){
+        if(quizzAppModel.currentQuestion.optionsWithHint.isEmpty()){
             quizzAppModel.addToStreak(isCorrect)
             hintsAvailable.text = "${quizzAppModel.HintsCuantity}"
         }
+        else{
+            quizzAppModel.addToStreak(false)
+        }
+
 
         quizzAppModel.updateScore(isCorrect, hintsUsed, selectedDifficulty)
 
@@ -240,8 +244,7 @@ class GameScreen : AppCompatActivity() {
         currentQuestion.optionsWithHint.add(hint)
 
         if(possibleHints.size == 1){
-            registerAnswer(currentQuestion.question.answerIndex, true)
-            quizzAppModel.addToStreak(false)
+            registerAnswer(currentQuestion.question.answerIndex)
         }
 
         quizzAppModel.HintsCuantity -= 1

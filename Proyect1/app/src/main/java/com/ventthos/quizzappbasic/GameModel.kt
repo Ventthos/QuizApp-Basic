@@ -10,7 +10,7 @@ class GameModel: ViewModel() {
         Question(
             R.string.question1,
             R.array.question1_options,
-            3,
+            2,
             Category.SCIENCE
         ),
         Question(

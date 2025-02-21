@@ -30,7 +30,7 @@ class ResultScreen : AppCompatActivity() {
             difficulty = intent.getStringExtra("DIFFICULTY") ?: "Normal"
         }
 
-        scoreTextView.text = "Tu puntuación: $score"
+        scoreTextView.text = "${getString(R.string.puntuation)} $score"
 
         // Selección del mensaje según el puntaje y la dificultad
         // HAY QUE CAMBIAR LAS CONDICIONES POR RANGOS COMO EN LAS CONDICIONES PARA gifResource

@@ -121,20 +121,20 @@
         <item>Muro de Adriano</item>
     </string-array>
 
-    <string name="question16">¿Cuál es la película con más premios Óscar ganados?</string>
+    <string name="question16">¿Cúal es el nombre del villano de Iron Man 1?</string>
     <string-array name="question16_options">
-        <item>Titanic</item>
-        <item>El Señor de los Anillos: El Retorno del Rey</item>
-        <item>Ben-Hur</item>
-        <item>Todas las anteriores</item>
+        <item>Whiplash</item>
+        <item>El mandarín</item>
+        <item>Hulk</item>
+        <item>Iron Monger</item>
     </string-array>
 
-    <string name="question17">¿Qué saga de películas sigue la historia de un joven mago llamado Harry?</string>
+    <string name="question17">¿Cuál es el nombre Sith del Cansiller Palpatine?</string>
     <string-array name="question17_options">
-        <item>El Señor de los Anillos</item>
-        <item>Narnia</item>
-        <item>Harry Potter</item>
-        <item>Crepúsculo</item>
+        <item>Darth Vader</item>
+        <item>Naboo</item>
+        <item>Dath Sidious</item>
+        <item>Darth Maul</item>
     </string-array>
 
     <string name="question18">¿Cuál es la película animada más taquillera de la historia?</string>
@@ -256,4 +256,5 @@
     <string name="hard_highestResult">¡Finalmente un resultado aceptable!</string>
 
     <string name="just_try_again">"¡Intenta de nuevo, puedes mejorar!"</string>
+    <string name="puntuation">Tu puntiación: </string>
 </resources>
