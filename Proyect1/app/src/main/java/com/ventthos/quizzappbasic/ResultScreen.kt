@@ -36,49 +36,49 @@ class ResultScreen : AppCompatActivity() {
         // HAY QUE CAMBIAR LAS CONDICIONES POR RANGOS COMO EN LAS CONDICIONES PARA gifResource
         val resultMessage = when {
             difficulty == "Fácil" -> {
-                if (score == 1000) "¡Ahora intenta algo más dificil!"
-                else if (score in 600..999) "¿Eso es todo lo que sabes?"
-                else if (score in 300..599) "¡Intenta de nuevo!"
-                else "¡Ni una buena!"
+                if (score >= 1000) R.string.easy_highestResult
+                else if (score in 600..999) R.string.easy_result2
+                else if (score in 300..599) R.string.easy_result1
+                else R.string.easy_lowestResult
             }
 
             difficulty == "Normal" -> {
-                if (score == 2000) "¡Todavía no es suficiente!"
-                else if (score in 1200..1999) "¡Aprende más!"
-                else if (score in 600 .. 1199) "¿Este es el límite de tus capacidades?"
-                else "¡Eres un novato!"
+                if (score >= 2000) R.string.normal_highestResult
+                else if (score in 1200..1999) R.string.normal_result2
+                else if (score in 600 .. 1199) R.string.normal_result1
+                else R.string.normal_lowestResult
             }
 
             difficulty == "Difícil" -> {
-                if (score == 3000) "¡Finalmente un resultado aceptable!"
-                else if (score in 1800..2999) "¡Todavía no aprendiste nada!"
-                else if (score in 900 .. 1799) "¡Al menos intentaste!"
-                else "¡Eres un fracaso!"
+                if (score >= 3000) R.string.hard_highestResult
+                else if (score in 1800..2999) R.string.hard_result1
+                else if (score in 900 .. 1799) R.string.hard_result2
+                else R.string.hard_lowestResult
             }
 
-            else -> "¡Intenta de nuevo, puedes mejorar!"
+            else -> R.string.just_try_again
         }
 
-        resultMessageTextView.text = resultMessage  // Asignar el mensaje al TextView
+        resultMessageTextView.text = getString(resultMessage)  // Asignar el mensaje al TextView
 
         // Selección del GIF según el puntaje y la dificultad
         val gifResource = when {
             difficulty == "Fácil" -> {
-                if (score == 1000) R.drawable.ratherdull
+                if (score >= 1000) R.drawable.ratherdull
                 else if (score in 600..999) R.drawable.gilgalol
                 else if (score in 300..599) R.drawable.gilgafail
                 else R.drawable.obliteratedsaber
             }
 
             difficulty == "Normal" -> {
-                if (score == 2000) R.drawable.ratherdull
+                if (score >= 2000) R.drawable.ratherdull
                 else if (score in 1200..1999) R.drawable.gilgalol
                 else if (score in 600 .. 1199) R.drawable.gilgafail
                 else R.drawable.obliteratedsaber
             }
 
             difficulty == "Difícil" -> {
-                if (score == 3000) R.drawable.ratherdull
+                if (score >= 3000) R.drawable.ratherdull
                 else if (score in 1800..2999) R.drawable.gilgalol
                 else if (score in 900 .. 1799) R.drawable.gilgafail
                 else R.drawable.obliteratedsaber

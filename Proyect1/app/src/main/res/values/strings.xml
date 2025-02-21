@@ -239,4 +239,21 @@
     <string name="save_settings">Guardar cambios</string>
     <string name="roulette_text">Eligiendo nueva pregunta...</string>
 
+
+    <string name="easy_lowestResult">¡Ni una buena!</string>
+    <string name="easy_result1">¡Intenta de nuevo!</string>
+    <string name="easy_result2">¿Eso es todo lo que sabes?</string>
+    <string name="easy_highestResult">¡Ahora intenta algo más dificil!</string>
+
+    <string name="normal_lowestResult">¡Eres un novato!</string>
+    <string name="normal_result1">¿Este es el límite de tus capacidades?</string>
+    <string name="normal_result2">¡Aprende más!</string>
+    <string name="normal_highestResult">¡Todavía no es suficiente! Ve por el difícil</string>
+
+    <string name="hard_lowestResult">"¡Eres un fracaso!"</string>
+    <string name="hard_result1">¡Al menos intentaste!</string>
+    <string name="hard_result2">¡Todavía no aprendiste nada!</string>
+    <string name="hard_highestResult">¡Finalmente un resultado aceptable!</string>
+
+    <string name="just_try_again">"¡Intenta de nuevo, puedes mejorar!"</string>
 </resources>
