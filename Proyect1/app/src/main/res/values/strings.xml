@@ -17,20 +17,20 @@
         <item>Nitrógeno</item>
     </string-array>
 
-    <string name="question3">¿Qué órgano del cuerpo humano es responsable de bombear la sangre?</string>
+    <string name="question3">¿Qué tipo de enlace químico se forma cuando los electrones son compartidos entre átomos?</string>
     <string-array name="question3_options">
-        <item>Pulmones</item>
-        <item>Hígado</item>
-        <item>Riñones</item>
-        <item>Corazón</item>
+        <item>Enlade iónico</item>
+        <item>Enlace de hidrógeno</item>
+        <item>Enlace metálico</item>
+        <item>Enlace covalente</item>
     </string-array>
 
-    <string name="question4">¿Cuántos lados tiene un hexágono?</string>
+    <string name="question4">¿Qué órgano humano produce insulina?</string>
     <string-array name="question4_options">
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+        <item>Riñón</item>
+        <item>Hígado</item>
+        <item>Páncreas</item>
+        <item>Corazón</item>
     </string-array>
 
     <string name="question5">¿Cuál es la velocidad aproximada de la luz en el vacío?</string>
@@ -153,12 +153,12 @@
         <item>Jared Leto</item>
     </string-array>
 
-    <string name="question20">¿En qué película un tiburón blanco aterroriza a un pueblo costero?</string>
+    <string name="question20">¿Qué número tenía Francesco Bernouli?</string>
     <string-array name="question20_options">
-        <item>Jurassic Park</item>
-        <item>Jaws (Tiburón)</item>
-        <item>Deep Blue Sea</item>
-        <item>Megalodón</item>
+        <item>45</item>
+        <item>1</item>
+        <item>95</item>
+        <item>Ninguna de las anteriores</item>
     </string-array>
 
     <string name="question21">¿Quién escribió "Don Quijote de la Mancha"?</string>
@@ -193,12 +193,12 @@
         <item>Platino</item>
     </string-array>
 
-    <string name="question25">¿Qué instrumento musical tiene teclas blancas y negras?</string>
+    <string name="question25">¿Cuál era el nombre del doctor de Frankenstein?</string>
     <string-array name="question25_options">
-        <item>Guitarra</item>
-        <item>Violín</item>
-        <item>Piano</item>
-        <item>Flauta</item>
+        <item>Dr. Frank</item>
+        <item>Frankie</item>
+        <item>Víctor</item>
+        <item>Sebastián</item>
     </string-array>
 
     <string name="topic1">Ciencia</string>
