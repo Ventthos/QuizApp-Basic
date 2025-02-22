@@ -166,6 +166,7 @@ class GameScreen : AppCompatActivity() {
 
     fun goToResultScreen() {
         // Envía la puntuación y la dificultad a la pantalla de resultados
+        quizzAppModel.convertHintsToPoints()
         val intent = Intent(this, ResultScreen::class.java)
         intent.putExtra("SCORE", quizzAppModel.score) // Pasa la puntuación
         intent.putExtra("DIFFICULTY", quizzAppModel.Difficulty) // Pasa la dificultad

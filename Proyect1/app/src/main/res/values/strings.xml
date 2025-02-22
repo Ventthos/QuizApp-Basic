@@ -153,7 +153,7 @@
         <item>Jared Leto</item>
     </string-array>
 
-    <string name="question20">¿Qué número tenía Francesco Bernouli?</string>
+    <string name="question20">¿Qué número tenía Francesco Bernouli en Cars 2e?</string>
     <string-array name="question20_options">
         <item>45</item>
         <item>1</item>
@@ -250,7 +250,7 @@
     <string name="normal_result2">¡Aprende más!</string>
     <string name="normal_highestResult">¡Todavía no es suficiente! Ve por el difícil</string>
 
-    <string name="hard_lowestResult">"¡Eres un fracaso!"</string>
+    <string name="hard_lowestResult">"¡Vuelve al modo fácil!"</string>
     <string name="hard_result1">¡Al menos intentaste!</string>
     <string name="hard_result2">¡Todavía no aprendiste nada!</string>
     <string name="hard_highestResult">¡Finalmente un resultado aceptable!</string>

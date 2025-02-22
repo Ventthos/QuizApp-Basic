@@ -271,5 +271,13 @@ class GameModel: ViewModel() {
         score += finalScore
     }
 
+    fun convertHintsToPoints(){
+        if(hintsCuantity == 0)
+            return
+
+        score += hintsCuantity * 10
+        hintsCuantity = 0
+    }
+
 
 }
